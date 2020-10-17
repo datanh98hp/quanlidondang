@@ -44,64 +44,36 @@
            Danh sách nhân viên
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive-md text-center">
                 
                 {{-- <button type="button" class="btn btn-primary btn_modal" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> --}}
                 <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>   
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        
+                            <th>$ID</th>
+                            <th>Họ Tên</th>   
+                            <th>Ngày vào làm</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Số ngày làm</th>
+                            <th>Hệ số lương</th>
+                            <th>Pos</th>
+                            <th>Lương thực lĩnh</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </tfoot>
+                    
                     <tbody>
+                        @foreach ($nhanvien as $item)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->Hoten}}</td>
+                            <td>{{$item->start_work}}</td>
+                            <td>{{$item->end_work}}</td>
+                            <td>{{$item->Hesoluong}}</td>
+                            <td>{{$item->Position}}</td>
+                            {{-- <td>{{$item->luong_h }}</td> --}}
+                            <td>{{$item->Tienluong}} VND</td>
                         </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                          <td>Garrett Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                      </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

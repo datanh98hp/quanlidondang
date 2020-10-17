@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Nhanvien extends Model
 {
     use HasFactory;
-
-    protected $fillable =[
-        'name',
-        'email',
-        'numberphone',
-    ];
+    protected $table = '_nhanvien';
+    protected $primaryKey = 'id';
+    protected $attributes  =[
+        'Hoten',
+        'sdt',
+        'start_work',
+        'end_work',
+        'Hesoluong',
+        'Position',
+        'luong_h',
+        'Tienluong',
+    ]; 
 }
