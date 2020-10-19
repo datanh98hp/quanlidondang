@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
@@ -18,14 +18,14 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
       @if(Auth::user()->type <=2)
       <div class="card text-center">
       
         <div class="card-body">
           <h3 class="card-title">Bảng báo giá</h3>
           <h4 class="card-text">Vật liệu</h4>
-          <table class="table table-borderless display"  id="dataTable" width="100%" cellspacing="0">
+          <table class="table display table-responsive-sm"  id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th scope="col">#</th>

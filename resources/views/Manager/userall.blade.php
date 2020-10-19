@@ -36,9 +36,11 @@
                            @endif
                         </td>
                         <td>
-                          <a class="btn btn-success"><i class="far fa-file-alt"></i></a>
+                          {{-- <a class="btn btn-success"><i class="far fa-file-alt"></i></a> --}}
                         <a class="btn btn-warning" href="{{url("edit/user/".$item->id)}}" ><i class="far fa-edit"></i></a>
-                          <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+
+                        {{-- <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a> --}}
+
                         </td>
                       </tr>
                      @endforeach
@@ -69,7 +71,7 @@
                    {{-- <form action="/user/update/" method="POST"> --}}
                         <div class="form-row align-items-center">
                           <div class="col-auto my-1">
-                           <input type="text" class="form-control mb-2" name="id" value="" id="inputId" placeholder="ID" >
+                           {{-- <input type="text" class="form-control mb-2" name="id" value="" id="inputId" placeholder="ID" > --}}
                            <div class="">
                               <label class="sr-only" for="inlineFormInput">Name</label>
                            <input type="text" class="form-control mb-2" name="username" value="" id="inputName" placeholder="User name">
@@ -98,7 +100,11 @@
   
    <script>
     $(document).ready(function() {
-      var table = $('#dataTable').DataTable();
+      var table = $('#dataTable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json"
+        }
+      });
     $('#dataTable tbody').on('click', 'tr', function () {
 
       var data = table.row( this ).data();

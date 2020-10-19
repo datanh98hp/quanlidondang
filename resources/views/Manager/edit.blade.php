@@ -1,4 +1,5 @@
 <x-app-layout>
+  @section('title','Edit User')
     <div class="card border-light mb-3 center" style="max-width: 50rem;">
         <div class="card-header">Cập nhật thông tin người dùng</div>
         <div class="card-body">

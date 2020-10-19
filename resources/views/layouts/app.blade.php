@@ -165,6 +165,8 @@
                         @endsection
                         <!-- Page Content -->
                             {{ $slot }}
+                        {{-- @yield('content') --}}
+                           
                     </main>
                     <footer class="py-4 bg-light mt-auto">
                         <div class="container-fluid">

@@ -10,7 +10,7 @@ class Nhanvien extends Model
     use HasFactory;
     protected $table = '_nhanvien';
     protected $primaryKey = 'id';
-    protected $attributes  =[
+    protected $fillable  =[
         'Hoten',
         'sdt',
         'start_work',

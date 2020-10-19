@@ -31,7 +31,12 @@ Route::middleware(['auth:sanctum', 'checkType'])->get('/dashboard', function () 
     return view('dashboard');
 })->name('dashboard');
 Route::group(['auth:sanctun' => 'vertified'], function () {
-    Route::get('nhanvien',[NhanvienController::class,'show'])->middleware(['auth:sanctum','verified']);
+    Route::get('nhanvien',[NhanvienController::class,'index'])->middleware(['auth:sanctum','verified']);
+    Route::post('create-nhanvien',[NhanvienController::class,'store']);
+    Route::get('edit-nhanvien/{id}',[NhanvienController::class,'edit']);
+
+
+
     Route::get('inthiepcuoi',[ThiepcuoiController::class,'index'])->middleware(['auth:sanctum','verified']);
     //// Cong viec
     Route::get('/task',[TaskController::class,'index']);

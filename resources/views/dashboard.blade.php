@@ -23,33 +23,33 @@
             </div>
           </div>
           <div class="card border-success mb-3 text-center" style="max-width: 18rem;">
-            {{-- <div class="card-header">Header</div> --}}
+           
             <div class="card-body">
               <h5 class="card-title">Tổng đơn hàng hoàn thành trong ngày</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
           <div class="card border-success mb-3 text-center" style="max-width: 18rem;">
-            {{-- <div class="card-header">Header</div> --}}
+           
             <div class="card-body text-success">
               <h5 class="card-title">Tổng thu nhập trong ngày</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
-          <div class="card border-danger mb-3 text-center" style="max-width: 18rem;">
-            {{-- <div class="card-header">Header</div> --}}
+          {{-- <div class="card border-danger mb-3 text-center" style="max-width: 18rem;">
+           
             <div class="card-body text-danger">
               <h5 class="card-title">Tổng chi tiêu trong ngày</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
           <div class="card border-succes mb-3 text-center" style="max-width: 18rem;">
-            {{-- <div class="card-header">Header</div> --}}
+           
             <div class="card-body">
               <h5 class="card-title">Tổng lợi nhuận thu được trong ngày</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
-          </div>
+          </div> --}}
     </div>
     <div class="container-fluid">
         <h1 class="mt-4">Charts</h1>
@@ -72,11 +72,11 @@
                         <i class="fas fa-chart-bar mr-1"></i>
                         Biểu đồ doanh số đơn hàng trong tháng
                     </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    {{-- <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div> --}}
+                    {{-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> --}}
                 </div>
             </div>
-            <div class="col-lg-6">
+            {{-- <div class="col-lg-6">
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-chart-pie mr-1"></i>
@@ -86,7 +86,7 @@
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 </x-app-layout>
