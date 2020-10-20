@@ -29,11 +29,11 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">Thông tin</h5>
+              <h5 class="card-title">Thông tin chi tiết</h5>
               <p class="card-text name_display"></p>
               <p class="card-text pos_display"></p>
               <p class="card-text phone_display"></p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
             </div>
           </div>
         </div>
@@ -103,8 +103,12 @@
 
         <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Thêm mới</button>
-
-            <div class="table-responsive-md text-center">
+            @if (session('status'))
+                  <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+              @endif
+            <div class="table-responsive-md text-center" style="margin: 0% 5% 0% 5%">
                 
                 {{-- <button type="button" class="btn btn-primary btn_modal" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> --}}
                 <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
@@ -120,6 +124,7 @@
                             <th>Lương/h</th>
                             <th>Pos</th>
                             <th>Lương thực lĩnh</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -150,10 +155,16 @@
                             <td>{{$item->luong_h}}</td>
                             <td>{{$item->Position}}</td>
                             <td>{{ number_format($item->Tienluong)}} VND </td>
-                            <th>
+                            <td>
                             <a class="btn btn-warning" href="/edit-nhanvien/{{$item->id}}"><i class="far fa-edit"></i></a>
-                            <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </th>
+                            </td>
+                            <td>
+                            <form action="/del-nhanvien/{{$item->id}}" method="POST">
+                              {{@csrf_field()}}
+                              {{method_field('DELETE')}}
+                              <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -163,16 +174,20 @@
     </div>
     <script>
         $(document).ready(function() {
-        var table = $('#dataTable').DataTable();
+        var table = $('#dataTable').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json"
+        }
+        });
      
     $('#dataTable tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
         // alert( 'You clicked on '+data ); 
         // $('.data_display').text(data);
 
-        $('.name_display').text(''+data[0]);
-        $('.pos_display').text(''+data[1]);
-        $('.phone_display').text(''+data[3]);
+        $('.name_display').text('Họ tên: '+data[1]);
+        $('.pos_display').text('Pos: '+data[8]);
+        $('.phone_display').text('SDT : '+data[2]);
         ///
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');

@@ -34,7 +34,8 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::get('nhanvien',[NhanvienController::class,'index'])->middleware(['auth:sanctum','verified']);
     Route::post('create-nhanvien',[NhanvienController::class,'store']);
     Route::get('edit-nhanvien/{id}',[NhanvienController::class,'edit']);
-
+    Route::put('update-nhanvien/{id}',[NhanvienController::class,'update']);
+    Route::delete('del-nhanvien/{id}',[NhanvienController::class,'delete']);
 
 
     Route::get('inthiepcuoi',[ThiepcuoiController::class,'index'])->middleware(['auth:sanctum','verified']);

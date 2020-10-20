@@ -158,6 +158,7 @@
                 </div>
                 <div id="layoutSidenav_content">
                     <main>  
+                        
                         @section('status')
                         <div class="alert alert-success" role="alert">
                         
