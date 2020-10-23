@@ -37,8 +37,14 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::put('update-nhanvien/{id}',[NhanvienController::class,'update']);
     Route::delete('del-nhanvien/{id}',[NhanvienController::class,'delete']);
 
-
+    //thiepcuoi
     Route::get('inthiepcuoi',[ThiepcuoiController::class,'index'])->middleware(['auth:sanctum','verified']);
+    Route::get('inthiepcuoi/chitiet/{id}',[ThiepcuoiController::class,'show'])->middleware(['auth:sanctum','verified']);
+    Route::post('inthiepcuoi/create',[ThiepcuoiController::class,'store'])->middleware(['auth:sanctum','verified']);
+    Route::get('inthiepcuoi/edit/{id}',[ThiepcuoiController::class,'edit'])->middleware(['auth:sanctum','verified']);
+    Route::put('inthiepcuoi/update/{id}',[ThiepcuoiController::class,'update'])->middleware(['auth:sanctum','verified']);
+    Route::delete('inthiepcuoi/delete/{id}',[ThiepcuoiController::class,'destroy'])->middleware(['auth:sanctum','verified']);
+
     //// Cong viec
     Route::get('/task',[TaskController::class,'index']);
     // Route::post('/task/create',[TaskController::class,'create']);
@@ -49,6 +55,8 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::get('vatlieu',[VatlieuController::class,'index']);
 // 
     Route::get('dathang',[DathangController::class,'index'])->middleware(['auth:sanctum','checkType']);
+    
+    Route::get('dathang/edit-bill/{id}',[DathangController::class,'edit'])->middleware(['auth:sanctum','checkType']);
     
     //QL người dùng
     Route::get('usermanage',[ManagerUserController::class,'index']);

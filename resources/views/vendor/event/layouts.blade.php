@@ -18,12 +18,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
           </button>
-          <a class="navbar-brand" href="{{ url('event') }}">Event</a>
+          <a class="navbar-brand" href="{{ url('event') }}">Sự kiện</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><a href="{{url('event')}}">Event Calender</a></li>
-            <li><a href="{{url('event-list')}}">Event List</a></li>
+            {{-- <li><a href="{{url('event')}}">Event Calender</a></li> --}}
+            <li><a href="{{url('event-list')}}">Danh sách sự kiện</a></li>
           </ul>
         </div>
       </div>

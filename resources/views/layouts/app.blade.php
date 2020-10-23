@@ -70,7 +70,7 @@
                                     
                                 @endif
                                 {{--  --}}
-                                @if(Auth::user()->type <=2)
+                                @if(Auth::user()->type ==1)
                                 <div class="sb-sidenav-menu-heading">Công việc</div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTasks" aria-expanded="false" aria-controls="collapseLayouts">
                                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

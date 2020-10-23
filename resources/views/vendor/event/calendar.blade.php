@@ -1,13 +1,9 @@
 @extends('event::layouts')
-
 @section('content')
         <div class="panel panel-primary">
-          {{-- @if(Auth::user()->type <=2) --}}
           <div class="panel-heading text-right">
               <button id="create_event"  type="button" class="btn btn-success btn-md"><i class="fa fa-plus"></i> Create Event</button>
           </div>
-          {{-- @endif --}}
-
           <div class="panel-body">
               
               <div id="alert_tmeassage_area"></div>
@@ -22,7 +18,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Tạo mới Event</h4>
+                <h4 class="modal-title" id="myModalLabel">Tạo m Event</h4>
               </div>
               <div class="modal-body">
                 <div id="create_event_alert"></div>
@@ -249,13 +245,14 @@
     header: {
         left: 'month,agendaWeek,agendaDay custom1',
         center: 'title',
-        right: 'custom2 prevYear,prev,next,nextYear'
+        right: 'custom2 prevYear,prev,next,nextYear',
       },
       footer: {
         left: 'custom1,custom2',
         center: '',
         right: 'prev,next'
-      },  
+      }, 
+      
        events: window.calender_data_url,
  
   	   axisFormat: 'h:mm',
@@ -263,7 +260,8 @@
             editable: false,
             droppable: false,
             eventTextColor:"#FFF",
-	    eventColor:"#337AB7",
+	    eventColor:"#f00",
+      
             selectable: true,
             selectHelper: true,
             eventLimit: 4,

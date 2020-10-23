@@ -3,7 +3,7 @@
 
    <div class="panel panel-primary">
           <div class="panel-heading text-right">
-            <button id="create_event"  type="button" class="btn btn-success btn-md"><i class="fa fa-plus"></i>  Create Event</button>
+            <button id="create_event"  type="button" class="btn btn-success btn-md"><i class="fa fa-plus"></i>  Tạo sự kiện</button>
           </div>
           <div class="panel-body">
               <div id="alert_tmeassage_area"></div>
@@ -13,9 +13,9 @@
                     <tr class="bg-light">
                       <th>#</th>
                       <th>Tiêu đề</th>
-                      <th >Thời gian</th>
-                      <th >Create_at</th>
-                      <th class="text-right">Action</th>
+                      <th >Time</th>
+                      <th >Date</th>
+                      <th class="text-right">Thao tác</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -31,7 +31,7 @@
             <div class="modal-content admin-form">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Thông tin công việc</h4>
+                    <h4 class="modal-title" id="myModalLabel">Thông tin Event</h4>
                 </div> 
                 <div class="modal-body">
                    <div id="view_event_alert"></div>
@@ -39,7 +39,7 @@
                     <div class="col-md-12 col-xs-12">
                         <div class="section row">
                         <div class="col-lg-12 col-xs-12">
-                              <label class="">Tiêu đề</label>
+                              <label class="">Title: </label>
                           <label for="" class="field">
                               <span id="view_event_title"></span>
                           </label>
@@ -48,7 +48,7 @@
                         
                          <div class="section row">
                           <div class="col-lg-12 col-xs-12">
-                              <label class="">Thời gian</label>
+                              <label class="">Thời gian: </label>
                           <label for="" class="field">
                               <span id="view_event_time"></span>
                           </label>         
@@ -58,7 +58,7 @@
                     
                     <div class="col-md-12">
                         
-                        <label class="">Mô tả Event</label>
+                        <label class="">Mô tả : </label>
                          <label for="" class="field">
                               <span id="view_event_description"></span>
                           </label>
@@ -71,7 +71,7 @@
                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                   
                 </div>         
         </div>
@@ -85,7 +85,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Tạo mới Event</h4>
+                <h4 class="modal-title" id="myModalLabel">Tạo Event</h4>
               </div>
               <div class="modal-body">
                 <div id="create_event_alert"></div>
@@ -170,14 +170,14 @@
                   <div class="section" style="margin-top: 10px">
                     <div  class="text-right" id="event_image_error_msg"></div>
                     <p class="text-right">
-                        <button type="button" id="create_event_btn"  class="btn btn-primary">Lưu</button>
+                        <button type="button" id="create_event_btn"  class="btn btn-primary">Save</button>
                     </p>
                   </div>
                   <!-- end section row -->
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>  
@@ -190,7 +190,7 @@
             <div class="modal-content admin-form">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Edit Event</h4>
+                <h4 class="modal-title" id="myModalLabel">Sửa Event</h4>
               </div>
               <div class="modal-body">
                 <div id="edit_event_alert"></div>
@@ -200,7 +200,7 @@
                   <div class="row">
                     <div class="col-lg-12 col-xs-12">
                       <div class="form-group">
-                        <label class="">Event Title</label>
+                        <label class="">Title</label>
                         <input type="text" name="event_title" id="edit_event_title" required=""  class="form-control" placeholder="Event Title">
                       </div>
                       <input  type="hidden" id="edit_event_id" value="" name="id" />  
@@ -213,7 +213,7 @@
                     <div class="pull-left" style="width: 75%;">
                       <div class="col-lg-5 col-xs-12">
                         <div class="form-group">
-                          <label class="">Start Date</label>
+                          <label class="">Ngày bắt đầu</label>
                           <input type="text"   name="event_start_date" required="" id="edit_event_start_date" value="" class="form-control date_pick" placeholder="Start Date">
                         </div>
                       </div>
@@ -227,7 +227,7 @@
                       </div>
                       <div class="col-lg-5 col-xs-12" id="edit_event_start_time_area" style="display: block">
                         <div class="form-group">
-                          <label class="">Start Time</label>
+                          <label class="">Giờ</label>
                           <input type="text"   name="event_start_time" id="edit_event_start_time" value="" class="form-control time_pick" placeholder="Start Time">
                         </div>
                       </div>
@@ -236,7 +236,7 @@
                       <div class="col-lg-2 col-xs-2">
                         <div id="edit_end_date_toggle" class="mt30" style="display: none" >
                           <button type="button" class="btn btn-md"  onclick="edit_add_end_date()" style="width: 117px" >
-                          <i class="text-success fa fa-plus"></i> End Date</button>
+                          <i class="text-success fa fa-plus"></i> Kết thúc</button>
                         </div>
                       </div>
                     </div>
@@ -245,7 +245,7 @@
                     <div class="pull-left" style="width: 75%;">
                       <div class="col-lg-5 col-xs-12">
                         <div class="form-group">
-                          <label class="">End Date</label>
+                          <label class="">Ngày kết thúc</label>
                           <input type="text"   name="event_end_date" id="edit_event_end_date" value="" class="form-control date_pick" placeholder="End Date">
                         </div>
                       </div>
@@ -259,14 +259,14 @@
                       </div>
                       <div class="col-lg-5 col-xs-12" id="edit_event_end_time_area" style="display: block">
                         <div class="form-group">
-                          <label class="">End Time</label>
+                          <label class="">Giờ</label>
                           <input type="text"   name="event_end_time" id="edit_event_end_time" value="" class="form-control time_pick" placeholder="End Time">
                         </div>
                       </div>
                     </div>
                     <div class="pull-right">
                       <div class="col-lg-2 col-xs-2 mt30" >
-                        <button type="button" class="btn btn-md" onclick="edit_remove_end_date()" style="width: 117px" > <i class="text-danger fa fa-times"></i> Remove</button>
+                        <button type="button" class="btn btn-md" onclick="edit_remove_end_date()" style="width: 117px" > <i class="text-danger fa fa-times"></i> Xóa</button>
                       </div>
                     </div>
                   </div>
@@ -274,21 +274,21 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label class="">Event Description</label>
+                        <label class="">Mô tả </label>
                         <textarea class="form-control" id="edit_event_description" name="event_description" placeholder="Description" ></textarea>
                       </div>
                     </div>
                   </div>
                   <div class="section" style="margin-top: 10px">
                     <p class="text-right">
-                      <button type="button" id="edit_event_btn"  class="btn btn-primary">Update</button>
+                      <button type="button" id="edit_event_btn"  class="btn btn-primary">Cập nhật</button>
                     </p>
                   </div>
                   <!-- end section row -->
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
               </div>
             </div>
           </div>

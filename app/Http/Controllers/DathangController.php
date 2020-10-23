@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Thiepcuoi;
 class DathangController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class DathangController extends Controller
     public function index()
     {
         //
-        return view('ketoan.listBill');
+       
+        return view('ketoan.listBill',[]);
     }
 
     /**
@@ -58,6 +59,8 @@ class DathangController extends Controller
     public function edit($id)
     {
         //
+        
+        return view('ketoan.EditBill',['id'=>$id]);
     }
 
     /**
