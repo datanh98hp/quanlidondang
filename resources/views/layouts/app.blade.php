@@ -74,12 +74,12 @@
                                 <div class="sb-sidenav-menu-heading">Công việc</div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTasks" aria-expanded="false" aria-controls="collapseLayouts">
                                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                    Nhiệm vụ
+                                    Nhắc công việc
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="collapseTasks" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="/task">Tác vụ</a>
+                                        <a class="nav-link" href="/task">Event</a>
                                         {{-- <a class="nav-link" href="/thongke">Thống kê</a> --}}
                                     </nav>
                                 </div>
@@ -96,7 +96,9 @@
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="/inthiepcuoi">In Thiệp Cưới</a>
                                         <a class="nav-link" href="/dathang">Đơn hàng</a>
+                                        
                                     </nav>
+                                    
                                 </div>
                                 @endif
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -113,7 +115,7 @@
                                         {{-- ---Ke toan---- --}}
                                         @if (Auth::user()->type <= 2)
                                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                            Cơ sở
+                                            Thiết bị - vật liệu
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
                                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
@@ -122,10 +124,11 @@
                                                 <a class="nav-link" href="/vattu">Vật tư</a>
                                                 {{-- <a class="nav-link" href="/baocao">Báo cáo</a> --}}
                                             </nav>
+                                            
                                         </div>
-                                            @if (Auth::user()->type == 1)
-                                            <a class="nav-link" href="/usermanage">Quản lí người dùng</a>
-                                            @endif
+                                        <a class="nav-link" href="/thuchi">Quản lí thu chi</a>
+                                      
+                                            
                                        @endif
                                        @if (Auth::user()->type == 3)
                                        <a class="nav-link" href="/danhsachvatlieucan">
@@ -138,6 +141,12 @@
 
                                 @if (Auth::user()->type==1)
                                     <div class="sb-sidenav-menu-heading">Nhân sự</div>
+                                    @if (Auth::user()->type == 1)
+                                            <a class="nav-link" href="/usermanage">
+                                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                                Quản lí người dùng
+                                            </a>
+                                    @endif
                                     <a class="nav-link" href="/nhanvien">
                                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                         Nhân viên

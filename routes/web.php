@@ -64,3 +64,4 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::put('user/update/{id}',[ManagerUserController::class,'update']);
 // 
 });
+

@@ -33,8 +33,13 @@
               <p class="card-text name_display"></p>
               <p class="card-text pos_display"></p>
               <p class="card-text phone_display"></p>
+              <b class="card-text luong_display"></b>
+              <br/>
+              <br/>
               {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
+            <button class="btn btn-success btn_tinhluong" onclick="Tinhluong()">Tính lương</button>
             </div>
+           
           </div>
         </div>
     </div>
@@ -123,7 +128,7 @@
                             <th>Hệ số lương</th>
                             <th>Lương/h</th>
                             <th>Pos</th>
-                            <th>Lương thực lĩnh</th>
+                            <th class="luong_display">Lương thực lĩnh</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -154,7 +159,7 @@
                             
                             <td>{{$item->luong_h}}</td>
                             <td>{{$item->Position}}</td>
-                            <td>{{ number_format($item->Tienluong)}} VND </td>
+                            <td class="luong_display">{{ number_format($item->Tienluong)}} VND </td>
                             <td>
                             <a class="btn btn-warning" href="/edit-nhanvien/{{$item->id}}"><i class="far fa-edit"></i></a>
                             </td>
@@ -179,7 +184,8 @@
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json"
         }
         });
-     
+        $('.btn_tinhluong').hide();
+        $('.luong_display').hide();
     $('#dataTable tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
         // alert( 'You clicked on '+data ); 
@@ -188,8 +194,10 @@
         $('.name_display').text('Họ tên: '+data[1]);
         $('.pos_display').text('Pos: '+data[8]);
         $('.phone_display').text('SDT : '+data[2]);
-        ///
+        $('.btn_tinhluong').show();  
+        $('.luong_display').text('Lương:  '+data[9]);
         if ( $(this).hasClass('selected') ) {
+          
             $(this).removeClass('selected');
         }
         else {
@@ -197,7 +205,13 @@
             $(this).addClass('selected');
         }
     } );
+    
+   
 } );
+function Tinhluong(){
+      $('.luong_display').show();
+
+    }
     </script>
    
 </x-app-layout>

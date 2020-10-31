@@ -19,7 +19,7 @@
           </div>
         </div>
       </div> --}}
-      @if(Auth::user()->type <=2)
+      {{-- @if(Auth::user()->type <=2)
       <div class="card text-center">
       
         <div class="card-body">
@@ -78,7 +78,7 @@
           </table>
         </div>
       </div>
-      @endif
+      @endif --}}
       <hr>
       <div class="row">
         <div class="col-sm-6">

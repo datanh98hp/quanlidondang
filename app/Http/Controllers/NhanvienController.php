@@ -83,10 +83,21 @@ class NhanvienController extends Controller
                 $nhanvien->Hesoluong = 1;
                 break;
         }
-        $nhanvien->Tienluong =  ($songaylam * $request->input('luong_h') * 9  ) + ( $nhanvien->Hesoluong * $request->input('luong_h') * 9 );
+        // $nhanvien->Tienluong =  ($songaylam * $request->input('luong_h') * 9  ) + ( $nhanvien->Hesoluong * $request->input('luong_h') * 9 );
+        $nhanvien->Tienluong = 0;
         $nhanvien->update();
+
         return redirect('nhanvien')->with('status','Updated...');
 
+    }
+    public function Tinh_luong($id)
+    {
+        
+        $nhanvien = Nhanvien::find($id);
+        $nhanvien->Tienluong =  ($songaylam * $request->input('luong_h') * 9  ) + ( $nhanvien->Hesoluong * $request->input('luong_h') * 9 );
+        $nhanvien->update();
+
+        return  $nhanvien->Tienluong;
     }
     public function delete($id)
     {
