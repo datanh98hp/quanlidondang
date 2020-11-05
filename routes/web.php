@@ -7,7 +7,7 @@ use App\Http\Controllers\DathangController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\VatlieuController;
 use App\Http\Controllers\ManagerUserController;
-
+use App\Http\Controllers\DasboardController;
 use App\Http\Middleware\ChecTypeUser;
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +27,14 @@ Route::get('/',function ()
 {
     return redirect('/dashboard');
 });
-Route::middleware(['auth:sanctum', 'checkType'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'checkType'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
 Route::group(['auth:sanctun' => 'vertified'], function () {
+
+    Route::get('dashboard',[DasboardController::class,'display'])->middleware(['auth:sanctum','verified'])->name('dashboard');
+    ///
     Route::get('nhanvien',[NhanvienController::class,'index'])->middleware(['auth:sanctum','verified']);
     Route::post('create-nhanvien',[NhanvienController::class,'store']);
     Route::get('edit-nhanvien/{id}',[NhanvienController::class,'edit']);
@@ -55,8 +59,12 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::get('vatlieu',[VatlieuController::class,'index']);
 // 
     Route::get('dathang',[DathangController::class,'index'])->middleware(['auth:sanctum','checkType']);
+    Route::post('/create-donhang',[DathangController::class,'store'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/edit-donhang/{id}',[DathangController::class,'edit'])->middleware(['auth:sanctum','checkType']);
+    Route::put('/update-donhang/{id}',[DathangController::class,'update'])->middleware(['auth:sanctum','checkType']);
+    Route::delete('/del-donhang/{id}',[DathangController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
     
-    Route::get('dathang/edit-bill/{id}',[DathangController::class,'edit'])->middleware(['auth:sanctum','checkType']);
+    Route::put('/hoanthanh-donhang/{id}',[DathangController::class,'hoanthanh'])->middleware(['auth:sanctum','checkType']);
     
     //QL người dùng
     Route::get('usermanage',[ManagerUserController::class,'index']);

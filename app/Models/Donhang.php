@@ -14,6 +14,7 @@ class Donhang extends Model
     protected $fillable = [
         'id_user',
         'Tg_giao',
+        'Coc_truoc',
         'Trang_thai',
         'Tong_gia'
     ];

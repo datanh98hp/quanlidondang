@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="col-md-12" style="margin: 0% 0% 0% 15%">
+    <div class="col-md-10" style="margin: 0% 0% 10% 10%">
     <h2 class="text-center">Cập nhật thông tin -  {{$thiepcuoi->KH}}</h2>
         
     <form action="/inthiepcuoi/update/{{$thiepcuoi->id}}" method="POST">
