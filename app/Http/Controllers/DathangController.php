@@ -44,6 +44,7 @@ class DathangController extends Controller
         $donhang = new Donhang;
         $donhang->id_user = Auth::user()->id;
         $donhang->Tg_giao = $request->input('Tg_giao');
+        $donhang->TenDH = $request->input('TenDH');
         $donhang->Coc_truoc = $request->input('Coc_truoc');
         $donhang->Trang_thai = 'Đang xử lí';
         $donhang->Tong_gia = 0;

@@ -43,7 +43,7 @@
            
             <div class="card-body text-danger">
               <h5 class="card-title">Tổng chi tiêu trong ngày</h5>
-              <h1 class="card-text">{{number_format($count_gt_Dh_ht)}}</h1>
+              <h1 class="card-text">{{number_format(200000)}}</h1>
               <h4 class="card-text">VND</h4>
             </div>
           </div>

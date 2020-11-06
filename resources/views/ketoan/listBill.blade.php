@@ -30,7 +30,10 @@
               <label for="recipient-name" class="col-form-label">Người lập đơn hàng:</label>
               <input type="text" class="form-control" id="recipient-name" name="" value="{{$username}}" disabled placeholder="Họ và tên">
             </div>
-
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Tên Đơn hàng:</label>
+              <input type="text" class="form-control" id="recipient-name" name="TenDH" value="" placeholder="Tên mô tả đơn hàng">
+            </div>
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Thêm mặt hàng:</label>
        
@@ -93,7 +96,7 @@
   </div>
   {{-- end --}}
   <div class="col-sm-12">
-    <div class="card border-danger" style="margin:0% 15%;">
+    <div class="card border-danger" style="margin:0% 11%;">
       <div class="card-body ">
         <h3 class="card-title text-center"> Danh sách đơn hàng</h3>
         @if (session('status'))
@@ -108,7 +111,8 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Người_lập_đơn</th>
+              <th scope="col">Người_lập</th>
+              <th scope="col">Tên DH</th>
               <th scope="col">T.gian lập</th>
               <th scope="col">Trạng thái</th>
               <th scope="col">Ngày trả</th>
@@ -123,8 +127,15 @@
             <tr>
               <td scope="row">{{$item->id}}</td>
               <td>{{$item->id_user}}</td>
+              <td>{{$item->TenDH}}</td>
               <td>{{$item->created_at}}</td>
-              <td>{{$item->Trang_thai}}</td>
+              <td style="color: green" class="center">
+              @if ($item->Trang_thai==='Hoàn thành')
+                <i class="fas fa-check"></i>
+              @elseif($item->Trang_thai==='Đang xử lí')
+                <i class="fas fa-spinner"></i>
+              @endif
+              </td>
               <td>{{$item->Tg_giao}}</td>
               <td>{{ number_format($item->Coc_truoc)}}</td>
               <td>{{ number_format($item->Tong_gia)}}</td>

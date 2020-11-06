@@ -8,6 +8,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\VatlieuController;
 use App\Http\Controllers\ManagerUserController;
 use App\Http\Controllers\DasboardController;
+use App\Http\Controllers\PhieuController;
 use App\Http\Middleware\ChecTypeUser;
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,10 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     // Route::post('/task/delete',[TaskController::class,'destroy']);
     Route::get('/thongke',[TaskController::class,'thongke']);
     ///
-    Route::get('vatlieu',[VatlieuController::class,'index']);
+    Route::get('vatlieu',[PhieuController::class,'index'])->middleware(['auth:sanctum','verified']);
+    Route::post('phieunhap-vatlieu',[PhieuController::class,'store_Phieunhap'])->middleware(['auth:sanctum','verified']);
+    Route::post('phieuxuat-vatlieu',[PhieuController::class,'store_Phieuxuat'])->middleware(['auth:sanctum','verified']);
+
 // 
     Route::get('dathang',[DathangController::class,'index'])->middleware(['auth:sanctum','checkType']);
     Route::post('/create-donhang',[DathangController::class,'store'])->middleware(['auth:sanctum','checkType']);
