@@ -4,7 +4,7 @@
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Danh sách phiếu nhập</h5>
-        <table class="table table-hover" id="dataTable">
+        <table class="table table-hover" id="dataTable" style="padding: 2%">
           <thead>
             <tr>
               <th scope="col" style="width:50px">#</th>
@@ -31,14 +31,14 @@
           
           </tbody>
         </table>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
       </div>
     </div>
     <div class="card">
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Danh sách phiếu xuất</h5>
-        <table class="table table-hover table-dark" id="dataTable2">
+        <table class="table table-hover table-dark" id="dataTable2" style="padding: 2%">
           <thead>
             <tr>
               <th scope="col" style="width:50px">#</th>
@@ -65,7 +65,7 @@
             @endforeach
           </tbody>
         </table>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
       </div>
     </div>
   </div>
@@ -90,12 +90,16 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Người nhập phiếu :</label>
+                  <label for="">Người nhập phiếu :</label>
                   <input type="text" class="form-control" id="id_user" name="id_user" disabled value="{{$username}}" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Danh sách vật liệu nhập:</label>
-           
+                  <label for="recipient-name" class="col-form-label">Danh sách vật liệu nhập <span style="margin-left: 300px; ">
+                    <button type="button" id="check_input" class="btn" style="color:#000">Thay đổi phương thức nhập <i class="fas fa-exchange-alt" style="color: blue"></i> </button></span>
+                  </label>
+
+                  <div class="input-group">                    
+                  </div>
                   <table class="table table-borderless" style="padding: 10px">
                     <thead id="thead_Nhap">
                       <tr>
@@ -111,8 +115,14 @@
                     </thead>
                     <tbody id="content_Nhap">
                       <tr>
-                        <td>
-                          <input type="text" class="form-control" id="TenVL" name="TenVL[]">
+                        <td id="NhapVL"> 
+                          {{-- <input type="text"  class="form-control" id="TenVL_input" name="TenVL[]" value=" "> --}}
+                          {{-- <select id="TenVL_select" class="custom-select @error('title') is-invalid @enderror" name="TenVL[]">
+                            <option selected value="">Chọn...</option>
+                            @foreach ($ds_Vatlieu as $item)
+                          <option value="{{$item->id}}">{{$item->TenVL}}</option>
+                            @endforeach
+                          </select> --}}
                         </td>
                         <td>
                           <input type="number" min="0" class="form-control" id="Soluong_ton" name="Soluong_ton[]">
@@ -141,7 +151,7 @@
     
                 <div class="form-group">
                   <label for="">Mô tả : </label>
-                  <textarea class="form-control" name="Description" rows="8" cols="6"></textarea>
+                  <textarea class="form-control" name="Description" rows="7" cols="6"></textarea>
                 </div>
                 
                 <div class="footer">
@@ -308,6 +318,7 @@
               "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
           
+          
         }
             });
         } );
@@ -319,5 +330,40 @@
         }
             });
         } );
+      </script>
+      <script>
+       
+      //  $('#TenVL_input').hide();
+       $('#NhapVL').append('<select id="TenVL_select" class="custom-select @error('title') is-invalid @enderror" name="TenVL[]">'+
+                            '<option selected value="">Chọn...</option>'+
+                            '@foreach ($ds_Vatlieu as $item)'+
+                          '<option value="{{$item->id}}">{{$item->TenVL}}</option>'+
+                            '@endforeach'+
+                          '</select>');
+        var timeClick = 0;
+        $('#check_input').click(function(){
+         
+          timeClick++;
+          if(timeClick % 2===0){
+            
+            $('#TenVL_select').remove();
+            $('#TenVL_input').remove();
+            $('#NhapVL').append('<input type="text" class="form-control" id="TenVL_input" name="TenVL[]">').show();
+            }else if(timeClick % 2!==0){
+            
+            $('#TenVL_input').remove();
+            $('#TenVL_select').remove();
+            $('#NhapVL').append('<select id="TenVL_select" class="custom-select @error('title') is-invalid @enderror" name="TenVL[]">'+
+                            '<option selected value="">Chọn...</option>'+
+                            '@foreach ($ds_Vatlieu as $item)'+
+                          '<option value="{{$item->id}}">{{$item->TenVL}}</option>'+
+                            '@endforeach'+
+                          '</select>');
+           
+          }
+
+          // console.log(timeClick);
+        });
+      
       </script>
 </x-app-layout>

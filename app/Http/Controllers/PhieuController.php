@@ -60,7 +60,7 @@ class PhieuController extends Controller
             'id_phieuxuat'=>'required|unique:Phieuxuat',
         ]);
         //
-        try {
+        // try {
             //code...
             $phieunhap = new Phieunhap;
             $phieunhap->id_user = Auth::user()->id;
@@ -70,23 +70,37 @@ class PhieuController extends Controller
     // 
             foreach ($request->input('TenVL') as $key => $id) {
                 # code...
-                $vatlieu = new Vatlieu;
-                $vatlieu->TenVL = $request->TenVL[$key];
-                $vatlieu->Soluong_ton = $request->Soluong_ton[$key];
-                $vatlieu->NSX = $request->NSX[$key];
-                $vatlieu->Don_gia = $request->Don_gia[$key];
-                $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
-                $vatlieu->id_phieunhap  = $phieunhap->id;
-                $vatlieu->id_phieuxuat  = 1;
-                $vatlieu->save();
+            
+                // $vatlieu = Vatlieu::where('id',$request->TenVL[$key]);
+                // $vatlieu->TenVL = $request->TenVL[$key];
+                // $vatlieu->Soluong_ton += $request->Soluong_ton[$key];
+                // // $vatlieu->NSX = $request->NSX[$key];
+                // // $vatlieu->Don_gia = $request->Don_gia[$key];
+                // // $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
+                // // $vatlieu->id_phieunhap  = $phieunhap->id;
+                // // $vatlieu->id_phieuxuat  = 1;
+                // $vatlieu->update();
+                // if(isDirty('Soluong_ton')===false){
+                        # code...
+                        $vatlieu = new Vatlieu;
+                        $vatlieu->TenVL = $request->TenVL[$key];
+                        $vatlieu->Soluong_ton = $request->Soluong_ton[$key];
+                        $vatlieu->NSX = $request->NSX[$key];
+                        $vatlieu->Don_gia = $request->Don_gia[$key];
+                        $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
+                        $vatlieu->id_phieunhap  = $phieunhap->id;
+                        $vatlieu->id_phieuxuat  = 1;
+                        $vatlieu->save();
+                // }
+  
             }
             
             $phieunhap->save();
             return redirect('/vatlieu')->with('status','Thêm thành công...');
-        } catch (\Throwable $th) {
-            //throw $th;
-            return redirect('/vatlieu')->withErrors($validator, 'TenVL')->with('status','Thêm thất bại ... Vui lòng kiểm tra lại dữ liệu nhập.');;
-        }
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     return redirect('/vatlieu')->withErrors($validator, 'TenVL')->with('status','Thêm thất bại ... Vui lòng kiểm tra lại dữ liệu nhập.');;
+        // }
        
     }
     public function store_Phieuxuat(Request $request)
@@ -107,7 +121,7 @@ class PhieuController extends Controller
         // Cap nhat lai so luong vat lieu
         foreach ($request->input('TenVL') as $key => $id) {
             # code...
-            $vatlieu = Vatlieu::find($request->TenVL[$key]);
+            $vatlieu = Vatlieu::find($request->TenVL[$key])->first();
             if($vatlieu->Soluong_ton>0){
 
                 $vatlieu->Soluong_ton -= $request->Soluong_xuat[$key];
