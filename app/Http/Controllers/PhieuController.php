@@ -70,32 +70,34 @@ class PhieuController extends Controller
     // 
             foreach ($request->input('TenVL') as $key => $id) {
                 # code...
-            
-                // $vatlieu = Vatlieu::where('id',$request->TenVL[$key]);
-                // $vatlieu->TenVL = $request->TenVL[$key];
-                // $vatlieu->Soluong_ton += $request->Soluong_ton[$key];
-                // // $vatlieu->NSX = $request->NSX[$key];
-                // // $vatlieu->Don_gia = $request->Don_gia[$key];
-                // // $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
-                // // $vatlieu->id_phieunhap  = $phieunhap->id;
-                // // $vatlieu->id_phieuxuat  = 1;
-                // $vatlieu->update();
-                // if(isDirty('Soluong_ton')===false){
-                        # code...
-                        $vatlieu = new Vatlieu;
-                        $vatlieu->TenVL = $request->TenVL[$key];
-                        $vatlieu->Soluong_ton = $request->Soluong_ton[$key];
-                        $vatlieu->NSX = $request->NSX[$key];
-                        $vatlieu->Don_gia = $request->Don_gia[$key];
-                        $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
-                        $vatlieu->id_phieunhap  = $phieunhap->id;
-                        $vatlieu->id_phieuxuat  = 1;
-                        $vatlieu->save();
-                // }
-  
-            }
+                try {
+                    $vatlieu = Vatlieu::where('TenVL',$request->TenVL[$key])->first();
+
+                    $vatlieu->TenVL = $request->TenVL[$key];
+                    $vatlieu->Soluong_ton +=  $request->Soluong_ton[$key];
+                    $vatlieu->NSX = $request->NSX[$key];
+                    $vatlieu->Don_gia = $request->Don_gia[$key];
+                    $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
+                    $vatlieu->id_phieunhap  = $phieunhap->id;
+                    // $vatlieu->id_phieuxuat  = 1;
+                    $vatlieu->update();
+    
+                } catch (\Throwable $th) {
+                    $vatlieu = new Vatlieu;
+                    $vatlieu->TenVL = $request->TenVL[$key];
+                    $vatlieu->Soluong_ton = $request->Soluong_ton[$key];
+                    $vatlieu->NSX = $request->NSX[$key];
+                    $vatlieu->Don_gia = $request->Don_gia[$key];
+                    $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
+                    $vatlieu->id_phieunhap  = $phieunhap->id;
+                    $vatlieu->id_phieuxuat  = 1;
+                    $vatlieu->save();
+                }
+
+           }
             
             $phieunhap->save();
+            // return $vatlieu;
             return redirect('/vatlieu')->with('status','Thêm thành công...');
         // } catch (\Throwable $th) {
         //     //throw $th;
@@ -112,7 +114,7 @@ class PhieuController extends Controller
             
         ]);
         //
-    
+        try {
         $phieuxuat = new Phieuxuat;
         $phieuxuat->id_user = Auth::user()->id;
         // $phieuxuat->Tgian_xuat = now();
@@ -121,7 +123,7 @@ class PhieuController extends Controller
         // Cap nhat lai so luong vat lieu
         foreach ($request->input('TenVL') as $key => $id) {
             # code...
-            $vatlieu = Vatlieu::find($request->TenVL[$key])->first();
+            $vatlieu = Vatlieu::where('TenVL',$request->TenVL[$key])->first();
             if($vatlieu->Soluong_ton>0){
 
                 $vatlieu->Soluong_ton -= $request->Soluong_xuat[$key];
@@ -134,6 +136,11 @@ class PhieuController extends Controller
         }
         $phieuxuat->Description = $request->input('Description');
         $phieuxuat->save();
+        return redirect('/vatlieu')->with('status','Thêm thành công...');
+        } catch (\Throwable $th) {
+            return redirect('/vatlieu')->withErrors($validator);
+        }
+        
         // 
         return redirect('/vatlieu')->with('status','Thêm thành công...');
 

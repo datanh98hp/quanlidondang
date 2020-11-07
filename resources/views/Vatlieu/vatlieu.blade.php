@@ -1,4 +1,40 @@
 <x-app-layout>
+  <div class="row mx-auto">   
+    <div class="col-sm-12">
+      <h2 class="title" style="color:blue; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Danh sách vật liệu tồn kho</h2>
+      <table class="table" id="dataTable_VL" style="max-width: 100%">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
   <div class="card-group" style="margin:0% 0% 30px 0%">
     <div class="card">
       <img src="..." class="card-img-top" alt="...">
@@ -98,17 +134,17 @@
                     <button type="button" id="check_input" class="btn" style="color:#000">Thay đổi phương thức nhập <i class="fas fa-exchange-alt" style="color: blue"></i> </button></span>
                   </label>
 
-                  <div class="input-group">                    
-                  </div>
+                  {{-- <div class="input-group">                   
+                  </div> --}}
                   <table class="table table-borderless" style="padding: 10px">
                     <thead id="thead_Nhap">
                       <tr>
                         {{-- <th scope="col">#</th> --}}
                         <th scope="" style="width:200px">Tên vật liệu</th>
                         <th scope="" style="width:100px">Số lượng</th>
-                        <th scope="" style="width:120px">Đơn giá</th>
-                        <th scope="" style="width:150px">Nơi cấp</th>
-                        <th scope="" style="width:130px">Đơn vị</th>
+                        <th class="show_when_create" scope="" style="width:120px">Đơn giá</th>
+                        <th class="show_when_create" scope="" style="width:150px">Nơi cấp</th>
+                        <th class="show_when_create" scope="" style="width:130px">Đơn vị</th>
                         <th scope=""><a href="javascript:;" class="btn btn-success addRow">+</a></th>
     
                       </tr>
@@ -127,13 +163,13 @@
                         <td>
                           <input type="number" min="0" class="form-control" id="Soluong_ton" name="Soluong_ton[]">
                         </td>
-                        <td>
+                        <td  class="show_when_create">
                           <input type="text" class="form-control" id="Don_gia" name="Don_gia[]">
                         </td>
-                        <td>
+                        <td class="show_when_create">
                           <input type="text" class="form-control" id="NSX" name="NSX[]">
                         </td> 
-                        <td>
+                        <td class="show_when_create">
                           {{-- <input type="text" class="form-control" id="Donvi" name="Donvi[]"> --}}
                           <select class="custom-select" name="Donvi_tinh[]">
                             <option selected>Chọn...</option>
@@ -181,7 +217,7 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Chọn đơn hàng</label>
                   </div>
-                  <select id="TenDH" class="custom-select @error('title') is-invalid @enderror" name="TenDH" required>
+                  <select id="TenDH" class="custom-select" name="TenDH" required>
                     <option selected>Chọn...</option>
                     @foreach ($ds_Donhang as $item)
                   <option value="{{$item->id}}">{{$item->TenDH}}</option>
@@ -214,7 +250,7 @@
                           <select id="TenVL" class="custom-select @error('title') is-invalid @enderror" name="TenVL[]" required>
                             <option selected>Chọn...</option>
                             @foreach ($ds_Vatlieu as $item)
-                          <option value="{{$item->id}}">{{$item->TenVL}}</option>
+                          <option value="{{$item->TenVL}}">{{$item->TenVL}}</option>
                             @endforeach
                           </select>
                         </td>
@@ -260,19 +296,19 @@
       <script>
         $('#thead_Nhap').on('click','.addRow',function(){
           var tr =  '<tr>'+
-                          '<td>'+
+                          '<td >'+
                             '<input type="text" class="form-control" id="TenMH" name="TenMH[]"'+
                           '</td>'+
                           '<td>'+
                             '<input type="number" min="0" class="form-control" id="Soluong" name="Soluong[]">'+
                           '</td>'+
-                          '<td>'+
+                          '<td class="show_when_create">'+
                             '<input type="text" class="form-control" id="Don_gia" name="Don_gia[]">'+
                           '</td>'+
-                          '<td>'+
+                          '<td class="show_when_create">'+
                           '<input type="text" class="form-control" id="Noi_cap" name="NSX[]">'+
                           '</td>'+
-                          '<td>'+
+                          '<td class="show_when_create">'+
                           
                             '<select class="custom-select" name="Donvi[]">'+
                               '<option selected>Chọn...</option>'+
@@ -307,6 +343,7 @@
                           '<th scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></th>'+
                         '</tr>';
           $('#content_Xuat').append(tr);
+
         });
         $('tbody').on('click','.deleteRow',function(){
           $(this).parent().parent().remove();
@@ -330,6 +367,14 @@
         }
             });
         } );
+        $(document).ready( function () {
+            $('#dataTable_VL').DataTable({
+              "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
+          
+        }
+            });
+        } );
       </script>
       <script>
        
@@ -337,10 +382,11 @@
        $('#NhapVL').append('<select id="TenVL_select" class="custom-select @error('title') is-invalid @enderror" name="TenVL[]">'+
                             '<option selected value="">Chọn...</option>'+
                             '@foreach ($ds_Vatlieu as $item)'+
-                          '<option value="{{$item->id}}">{{$item->TenVL}}</option>'+
+                          '<option value="{{$item->TenVL}}">{{$item->TenVL}}</option>'+
                             '@endforeach'+
                           '</select>');
         var timeClick = 0;
+        // $('.show_when_create').hide();
         $('#check_input').click(function(){
          
           timeClick++;
@@ -348,21 +394,23 @@
             
             $('#TenVL_select').remove();
             $('#TenVL_input').remove();
+            $('.show_when_create').show();
             $('#NhapVL').append('<input type="text" class="form-control" id="TenVL_input" name="TenVL[]">').show();
             }else if(timeClick % 2!==0){
             
             $('#TenVL_input').remove();
             $('#TenVL_select').remove();
+            $('.show_when_create').hide();
             $('#NhapVL').append('<select id="TenVL_select" class="custom-select @error('title') is-invalid @enderror" name="TenVL[]">'+
                             '<option selected value="">Chọn...</option>'+
                             '@foreach ($ds_Vatlieu as $item)'+
-                          '<option value="{{$item->id}}">{{$item->TenVL}}</option>'+
+                          '<option value="{{$item->TenVL}}">{{$item->TenVL}}</option>'+
                             '@endforeach'+
                           '</select>');
            
           }
 
-          // console.log(timeClick);
+          console.log(timeClick);
         });
       
       </script>

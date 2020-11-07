@@ -60,6 +60,8 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::get('vatlieu',[PhieuController::class,'index'])->middleware(['auth:sanctum','verified']);
     Route::post('phieunhap-vatlieu',[PhieuController::class,'store_Phieunhap'])->middleware(['auth:sanctum','verified']);
     Route::post('phieuxuat-vatlieu',[PhieuController::class,'store_Phieuxuat'])->middleware(['auth:sanctum','verified']);
+    Route::get('chitiet-phieunhap-vatlieu/{id}',[PhieuController::class,'show_Phieunhap'])->middleware(['auth:sanctum','verified']);
+    Route::get('chitiet-phieuxuat-vatlieu/{id}',[PhieuController::class,'store_Phieuxuat'])->middleware(['auth:sanctum','verified']);
 
 // 
     Route::get('dathang',[DathangController::class,'index'])->middleware(['auth:sanctum','checkType']);
