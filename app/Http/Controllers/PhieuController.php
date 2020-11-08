@@ -121,7 +121,8 @@ class PhieuController extends Controller
         $phieuxuat->id_user = Auth::user()->id;
         // $phieuxuat->Tgian_xuat = now();
         $phieuxuat->id_Donhang = $request->input('TenDH');
-
+        $phieuxuat->Description = $request->input('Description');
+        $phieuxuat->save();
         // Cap nhat lai so luong vat lieu
         foreach ($request->input('TenVL') as $key => $id) {
             # code...
@@ -130,14 +131,14 @@ class PhieuController extends Controller
 
                 $vatlieu->Soluong_ton -= $request->Soluong_xuat[$key];
                 $vatlieu->last_change = $request->Soluong_xuat[$key];
+                $vatlieu->id_phieuxuat = $phieuxuat->id ;
                 $vatlieu->update();
             }else{
                 return redirect('/vatlieu')->with('status',' Số lượng đã hết...');
             }
             
         }
-        $phieuxuat->Description = $request->input('Description');
-        $phieuxuat->save();
+        
         return redirect('/vatlieu')->with('status','Thêm thành công...');
         } catch (\Throwable $th) {
             return redirect('/vatlieu')->withErrors($validator);
@@ -172,7 +173,15 @@ class PhieuController extends Controller
     {
         //
         $phieuxuat = Phieuxuat::find($id);
-        return view('Vatlieu.ChitietPhieuXuat',['phieuxuat'=>$phieuxuat]);
+        
+        $VL = Vatlieu::where('id_phieuxuat',$id)->get();
+
+        return view('Vatlieu.ChitietPhieuXuat',
+        [
+            'phieuxuat'=>$phieuxuat,
+            
+            'VL'=>$VL
+        ]);
     }
 
     /**

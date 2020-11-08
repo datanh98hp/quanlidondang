@@ -40,7 +40,7 @@
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Danh sách phiếu nhập</h5>
-        <table class="table table-hover" id="dataTable" style="padding: 2%">
+        <table class="table table-hover" id="dataTable" style="padding: 1%">
           <thead>
             <tr>
               <th scope="col" style="width:50px">#</th>
@@ -78,7 +78,7 @@
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Danh sách phiếu xuất</h5>
-        <table class="table table-hover table-dark" id="dataTable2" style="padding: 2%">
+        <table class="table table-hover table-dark" id="dataTable2" style="padding: 1%">
           <thead>
             <tr>
               <th scope="col" style="width:50px">#</th>
@@ -86,6 +86,7 @@
               <th scope="col" style="width:200px" >T.gian xuất</th>
               <th scope="col" style="width:100px">Đơn hàng</th>
               <th scope="col" style="width:200px">Mô tả</th>
+              <th scope="col" style="width:100px"></th>
             </tr>
           </thead>
           <tbody>
@@ -101,6 +102,9 @@
               <td>{{$item->Tgian_xuat}}</td>
               <td>{{$item->id_Donhang}}</td>
               <td>{{substr($item->Description,0,20)}}... </td>
+              <td>
+                <a class="btn btn-info" href="/chitiet-phieuxuat-vatlieu/{{$item->id}}">Chi tiết</a>
+              </td>
             </tr>    
             @endforeach
           </tbody>

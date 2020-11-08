@@ -48,9 +48,9 @@
               </table>
               
       </div>
-      <span class="text-right" style="" id="display_Tonggia"> <b><span>Tổng tiền : </span></b> {{number_format($coutnTongGia)}} VND</span>
+      <span class="text-right" style="padding:10px" id="display_Tonggia"> <b><span>Tổng tiền : </span></b> {{number_format($coutnTongGia)}} VND</span>
 
-      <label class="text-left" style="margin: 10% 10% 0% 10%; font-weight: 800">Người lập </label>
+      <label class="text-left" style="margin: 20% 10% 0% 10%; font-weight: 800">Người lập </label>
     <p class="text-left" style="margin: 3% 0% 0% 10%; font-weight: 400">{{$user}}</p>
       </div>
   </div>
