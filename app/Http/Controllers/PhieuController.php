@@ -79,6 +79,7 @@ class PhieuController extends Controller
                     $vatlieu->Don_gia = $request->Don_gia[$key];
                     $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
                     $vatlieu->id_phieunhap  = $phieunhap->id;
+                    $vatlieu->last_change = "+". $request->Soluong_ton[$key];
                     // $vatlieu->id_phieuxuat  = 1;
                     $vatlieu->update();
     
@@ -90,6 +91,7 @@ class PhieuController extends Controller
                     $vatlieu->Don_gia = $request->Don_gia[$key];
                     $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
                     $vatlieu->id_phieunhap  = $phieunhap->id;
+                    $vatlieu->last_change = $request->Soluong_ton[$key];
                     $vatlieu->id_phieuxuat  = 1;
                     $vatlieu->save();
                 }
@@ -127,7 +129,7 @@ class PhieuController extends Controller
             if($vatlieu->Soluong_ton>0){
 
                 $vatlieu->Soluong_ton -= $request->Soluong_xuat[$key];
-
+                $vatlieu->last_change = $request->Soluong_xuat[$key];
                 $vatlieu->update();
             }else{
                 return redirect('/vatlieu')->with('status',' Số lượng đã hết...');
@@ -151,9 +153,26 @@ class PhieuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show_Phieunhap ($id)
     {
         //
+        $phieunhap = Phieunhap::find($id);
+        $user = Auth::user()->name;
+        $VL = Vatlieu::where('id_phieunhap',$id)->get();
+        $coutnTongGia = 0;
+        foreach ($VL as $key => $value) {
+            $coutnTongGia+=( intval($VL[$key]->last_change) * $VL[$key]->Don_gia );
+        }
+        return view('Vatlieu.ChitietPhieuNhap',['phieunhap'=>$phieunhap,'user'=>$user,
+        'coutnTongGia'=>$coutnTongGia,
+        'VL'=>$VL
+        ]);
+    }
+    public function show_Phieunxuat ($id)
+    {
+        //
+        $phieuxuat = Phieuxuat::find($id);
+        return view('Vatlieu.ChitietPhieuXuat',['phieuxuat'=>$phieuxuat]);
     }
 
     /**

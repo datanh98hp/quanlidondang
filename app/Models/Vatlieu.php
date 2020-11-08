@@ -16,6 +16,7 @@ class Vatlieu extends Model
         'Soluong_ton',
         'NSX',
         'Don_gia',
+        'last_change',
         'Donvi_tinh',
         'id_phieunhap',
         'id_phieuxuat'

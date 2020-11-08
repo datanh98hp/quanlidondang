@@ -47,6 +47,7 @@
               <th scope="col" style="width:100px">Người nhập</th>
               <th scope="col" style="width:200px">T.gian nhập</th>
               <th scope="col" style="width:200px" >Mô tả</th>
+              <th scope="col" style="width:100px" ></th>
             </tr>
           </thead>
           <tbody>
@@ -62,6 +63,9 @@
               </td>
               <td>{{$item->Tgian_nhap}}</td>
               <td>{{substr($item->Description,0,20)}}... </td>
+              <td>
+                <a class="btn btn-info" href="/chitiet-phieunhap-vatlieu/{{$item->id}}">Chi tiết</a>
+              </td>
             </tr>    
             @endforeach
           
