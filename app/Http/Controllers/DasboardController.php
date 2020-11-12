@@ -4,23 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Donhang;
+use App\Models\Thuchi;
+use Carbon\Carbon;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
+
 class DasboardController extends Controller
 {
     //
+    function dates_month($month, $year) {
+        $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        $dates_month = array();
+    
+        for ($i = 1; $i <= $num; $i++) {
+            $mktime = mktime(0, 0, 0, $month, $i, $year);
+            $date = date("d-M-Y", $mktime);
+            $dates_month[$i] = $date;
+        }
+    
+        return $dates_month;
+    }
     public function display()
     {
-        $TongDonhang = Donhang::all()->count();
-        $TongDonhangHoanThanh = Donhang::where('Trang_thai','Hoàn thành')->count();
+        $TongDonhang =Donhang::whereDate('created_at',date('Y-m-d') )->count();
+        $TongDonhangHoanThanh = Donhang::whereDate('created_at',date('Y-m-d') )
+                                        ->where('Trang_thai','Hoàn thành')->count();
         $DH_HT = Donhang::where('Trang_thai','Hoàn thành')->get();
         $tong_gt = 0;
-        foreach ($DH_HT as $key => $value) {
-            $tong_gt+=$DH_HT[$key]->Tong_gia;
-        }
+
+        $thuchi = Thuchi::all();
+
+        $day = date('Y-m-d');
+
+        $thuchiInday = Thuchi::whereMonth('created_at',date('m') )->get();
+        // dd( $thuchiInday);
+        $day_thu = 0;
+        $day_chi = 0;
+         foreach ($thuchiInday as $key => $value) {
+             $day_thu+=$thuchi[$key]->SoTen_Thu;
+             $day_chi+=$thuchi[$key]->SoTen_Chi;
+         }
+        $a = $thuchi->count();
+        $arr_data = $thuchi->toArray();
+        // 
+
 
         return view('dashboard',[
             'countDonhang'=>$TongDonhang,
             'countDh_Hoanthanh'=>$TongDonhangHoanThanh,
             'count_gt_Dh_ht'=>$tong_gt,
+           'day_thu'=>$day_thu,
+           'day_chi'=>$day_chi,
             ]);
     }
+    public function getDataToChart(){
+        $data = Thuchi::whereDate('created_at','<=',date('Y-m-d'))->get();
+        return ($data);
+    }
+    
 }

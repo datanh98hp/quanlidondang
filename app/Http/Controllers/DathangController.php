@@ -79,6 +79,7 @@ class DathangController extends Controller
     public function show($id)
     {
         //
+      
     }
 
     /**
@@ -195,5 +196,25 @@ class DathangController extends Controller
     } catch (\Throwable $th) {
        return redirect('/dathang')->with('status','Vui lòng kiểm tra lại thông tin.');
     }
+    }
+    public function print($id){
+
+        $donhang = Donhang::find($id);
+        $list_mh = Mathang::where('id_Donhang',$id)->get();
+
+        $tong_Gia = 0;
+
+        foreach ($list_mh as $key => $value) {
+            # code...
+            $tong_Gia+=( $list_mh[$key]->Soluong*$list_mh[$key]->Don_gia);
+        }
+
+        return view('ketoan.PrintHoadon',
+        [
+            'dh'=>$donhang,
+            'list_dh'=>$list_mh,
+            'tongGia'=>$tong_Gia
+        ]
+        );
     }
 }

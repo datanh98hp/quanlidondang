@@ -1,7 +1,11 @@
 <x-app-layout>
     <h2 class="text-center">Thông tin đơn hàng</h2>
+    <div class="form-group center">
+      <a class="btn btn-link" style="margin:0% 48%" href="/print-donhang/{{$donhang->id}}"> <i class="fas fa-print"></i> In </a>
+    </div>
     <div class="card  border-danger col-md-8" style="margin:0% 15%">
-        <div class="">
+        
+        <div class="form-froup">
           <form class="form" action="/hoanthanh-donhang/{{$donhang->id}}" method="POST" style="margin: 2% 0% 0% 70%">
             {{ csrf_field() }}
             {{method_field('PUT')}}

@@ -15,7 +15,7 @@
         </div>
     </div> --}}
     <div class="row" style="margin:30px;justify-content: space-evenly">
-        <div class="card border-primary mb-3" style="max-width: 18rem;">
+        <div class="card border-primary mb-3" style="max-width: 100%;">
             {{-- <div class="card-header">Tổng hóa đơn</div> --}}
             <div class="card-body text-primary text-center">
               <h5 class="card-title">Tổng đơn hàng trong ngày</h5>
@@ -23,7 +23,7 @@
               <h4 class="card-text">Đơn hàng</h4>
             </div>
           </div>
-          <div class="card border-success mb-3 text-center" style="max-width: 18rem;">
+          <div class="card border-success mb-4 text-center" style="max-width: 18rem;">
            
             <div class="card-body">
               <h5 class="card-title">Tổng đơn hàng hoàn thành trong ngày</h5>
@@ -31,7 +31,7 @@
               <h4 class="card-text">Đơn hàng</h4>
             </div>
           </div>
-          <div class="card border-success mb-3 text-center" style="max-width: 18rem;">
+          <div class="card border-success mb-4 text-center" style="max-width: 18rem;">
            
             <div class="card-body text-success">
               <h5 class="card-title">Tổng thu nhập trong ngày</h5>
@@ -39,11 +39,11 @@
               <h4 class="card-text">VND</h4>
             </div>
           </div>
-          <div class="card border-danger mb-3 text-center" style="max-width: 18rem;">
+          <div class="card border-danger mb-4 text-center" style="max-width: 18rem;">
            
             <div class="card-body text-danger">
-              <h5 class="card-title">Tổng chi tiêu trong ngày</h5>
-              <h1 class="card-text">{{number_format(200000)}}</h1>
+              <h5 class="card-title">Tổng thu/chi tiêu trong ngày</h5>
+              <h4 class="">{{ number_format($day_thu).' / '.number_format($day_chi) }}</h4>
               <h4 class="card-text">VND</h4>
             </div>
           </div>
@@ -56,7 +56,7 @@
           </div> --}}
     </div>
     <div class="container-fluid">
-        <h1 class="mt-4">Charts</h1>
+        {{-- <h1 class="mt-4">Charts</h1> --}}
         {{-- <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
             <li class="breadcrumb-item active">Charts</li>
@@ -64,33 +64,53 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-chart-area mr-1"></i>
-                Area Chart - Trung bình thu nhập bình quân trong tháng
+                 - Thu nhập bình quân trong tháng - {{date('m')}}
+            </div> 
+            {{--  --}}
+            <div class="card-body">
+              <canvas id="charDT" width="100%" height="30">
             </div>
-            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-muted"> Updated : {{now()}}</div>
         </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar mr-1"></i>
-                        Biểu đồ doanh số đơn hàng trong tháng
-                    </div>
-                    {{-- <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div> --}}
-                    {{-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> --}}
-                </div>
-            </div>
-            {{-- <div class="col-lg-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-pie mr-1"></i>
-                        Pie Chart - Biểu đồ doanh thu trong ngày
-                    </div>
-                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                </div>
-            </div>
-        </div> --}}
+        
     </div>
-
+    
+   
 </x-app-layout>
+<script>
+    var day_thu = <?php echo json_encode($day_thu); ?>;
+    var day_chi = <?php echo json_encode($day_chi); ?>;
+    var ctx2 = document.getElementById('charDT');
+    var myChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Thu', 'Chi'],
+            datasets: [{
+                label: 'Chi',
+                data: [day_thu,day_chi],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+           
+        }
+    });
+</script>
+// 

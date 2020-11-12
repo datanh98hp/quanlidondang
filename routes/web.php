@@ -9,6 +9,7 @@ use App\Http\Controllers\VatlieuController;
 use App\Http\Controllers\ManagerUserController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\PhieuController;
+use App\Http\Controllers\ThuchiController;
 use App\Http\Middleware\ChecTypeUser;
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::get('/',function ()
 Route::group(['auth:sanctun' => 'vertified'], function () {
 
     Route::get('dashboard',[DasboardController::class,'display'])->middleware(['auth:sanctum','verified'])->name('dashboard');
+    Route::get('get-data/thuchi/dashboard',[DasboardController::class,'getDataToChart'])->middleware(['auth:sanctum','verified'])->name('dashboard');;
+
     ///
     Route::get('nhanvien',[NhanvienController::class,'index'])->middleware(['auth:sanctum','verified']);
     Route::post('create-nhanvien',[NhanvienController::class,'store']);
@@ -71,11 +74,20 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::delete('/del-donhang/{id}',[DathangController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
     
     Route::put('/hoanthanh-donhang/{id}',[DathangController::class,'hoanthanh'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/print-donhang/{id}',[DathangController::class,'print'])->middleware(['auth:sanctum','checkType']);
     
     //QL người dùng
-    Route::get('usermanage',[ManagerUserController::class,'index']);
-    Route::get('edit/user/{id}',[ManagerUserController::class,'edit']);
-    Route::put('user/update/{id}',[ManagerUserController::class,'update']);
+    Route::get('usermanage',[ManagerUserController::class,'index'])->middleware(['auth:sanctum','checkType']);
+    Route::get('edit/user/{id}',[ManagerUserController::class,'edit'])->middleware(['auth:sanctum','checkType']);
+    Route::put('user/update/{id}',[ManagerUserController::class,'update'])->middleware(['auth:sanctum','checkType']);
+
+    ///
+    Route::get('thuchi',[ThuchiController::class,'index'])->middleware(['auth:sanctum','checkType']);
+    Route::post('/create-thuchi',[ThuchiController::class,'store'])->middleware(['auth:sanctum','checkType']);
+    Route::delete('/del-thuchi/{id}',[ThuchiController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
 // 
+
+
+
 });
 

@@ -121,7 +121,7 @@
                                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <a class="nav-link" href="/vatlieu">Vật liệu</a>
-                                                <a class="nav-link" href="/vattu">Vật tư</a>
+                                                {{-- <a class="nav-link" href="/vattu">Vật tư</a> --}}
                                                 {{-- <a class="nav-link" href="/baocao">Báo cáo</a> --}}
                                             </nav>
                                             
@@ -130,11 +130,11 @@
                                       
                                             
                                        @endif
-                                       @if (Auth::user()->type == 3)
+                                       {{-- @if (Auth::user()->type == 3)
                                        <a class="nav-link" href="/danhsachvatlieucan">
                                             Danh sách vật liệu cần   
                                         </a>
-                                        @endif
+                                        @endif --}}
                                     </nav>  
                                 </div>
                                 @endif
@@ -201,19 +201,19 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('assets/js/scripts.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('assets/demo/chart-area-demo.js')}}"></script>
-        <script src="{{asset('assets/demo/chart-bar-demo.js')}}"></script> 
+        <script src="{{asset('assets/demo/chart-bar-demo.js')}}"></script>  --}}
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('assets/demo/datatables-demo.js')}}"></script>
         <script src="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"></script>
 
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
         
-        <script src="https://cdn.datatables.net/plug-ins/1.10.22/features/scrollResize/dataTables.scrollResize.min.js"></script>
-    </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+      
 </html>
