@@ -35,9 +35,17 @@ class DasboardController extends Controller
 
         $day = date('Y-m-d');
 
-        $thuchiInday = Thuchi::whereMonth('created_at',date('m') )->get();
+        $thuchiInday = Thuchi::whereMonth('created_at',date('d') )->get();
+        $thuchiMonth = Thuchi::whereMonth('created_at',date('m') )->get();
         // dd( $thuchiInday);
-        $day_thu = 0;
+        $month_thu = 0;
+        $month_chi = 0;
+         foreach ($thuchiMonth as $key => $value) {
+             $month_thu+=$thuchi[$key]->SoTen_Thu;
+             $month_chi+=$thuchi[$key]->SoTen_Chi;
+         }
+
+         $day_thu = 0;
         $day_chi = 0;
          foreach ($thuchiInday as $key => $value) {
              $day_thu+=$thuchi[$key]->SoTen_Thu;
@@ -52,6 +60,8 @@ class DasboardController extends Controller
             'countDonhang'=>$TongDonhang,
             'countDh_Hoanthanh'=>$TongDonhangHoanThanh,
             'count_gt_Dh_ht'=>$tong_gt,
+           'month_thu'=>$month_thu,
+           'month_chi'=>$month_chi,
            'day_thu'=>$day_thu,
            'day_chi'=>$day_chi,
             ]);

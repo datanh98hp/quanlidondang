@@ -59,7 +59,7 @@
                                     </div>
                                   </div>
                                 {{-- ADMIN --}}
-                                @if (Auth::user()->type==1)
+                                @if (Auth::user()->type<=3)
                                     <div class="sb-sidenav-menu-heading">Quản trị</div>
                                     <a class="nav-link" href="/dashboard">
                                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -70,7 +70,7 @@
                                     
                                 @endif
                                 {{--  --}}
-                                @if(Auth::user()->type ==1)
+                                @if(Auth::user()->type <=3)
                                 <div class="sb-sidenav-menu-heading">Công việc</div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTasks" aria-expanded="false" aria-controls="collapseLayouts">
                                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -113,7 +113,7 @@
                                         {{-- ADMIN --}}
                                        
                                         {{-- ---Ke toan---- --}}
-                                        @if (Auth::user()->type <= 2)
+                                        @if (Auth::user()->type <= 3)
                                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                             Thiết bị - vật liệu
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -126,7 +126,9 @@
                                             </nav>
                                             
                                         </div>
-                                        <a class="nav-link" href="/thuchi">Quản lí thu chi</a>
+                                        @if (Auth::user()->type <= 2)
+                                            <a class="nav-link" href="/thuchi">Quản lí thu chi</a>
+                                        @endif
                                       
                                             
                                        @endif

@@ -6,30 +6,21 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Tên VL</th>
+            <th scope="col">SL</th>
+            <th scope="col">Đơn vị</th>
           </tr>
         </thead>
         <tbody>
+          @foreach ($ds_Vatlieu as $item)
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+            <th scope="row">{{$item->id}}</th>
+            <td>{{$item->TenVL}}</td>
+            <td>{{$item->Soluong_ton}}</td>
+            <td>{{$item->Donvi_tinh}}</td>
+          </tr>    
+          @endforeach
+          
         </tbody>
       </table>
     </div>

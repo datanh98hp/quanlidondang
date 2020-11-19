@@ -9,7 +9,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputCity">Email</label>
-                  <input type="text" name="email" value="{{$users->email}}" class="form-control" id="inputCity">
+                  <input type="text" disabled name="email" value="{{$users->email}}" class="form-control" id="inputCity">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputState">Position

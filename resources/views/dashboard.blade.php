@@ -78,8 +78,8 @@
    
 </x-app-layout>
 <script>
-    var day_thu = <?php echo json_encode($day_thu); ?>;
-    var day_chi = <?php echo json_encode($day_chi); ?>;
+    var month_thu = <?php echo json_encode($month_thu); ?>;
+    var month_chi = <?php echo json_encode($month_chi); ?>;
     var ctx2 = document.getElementById('charDT');
     var myChart = new Chart(ctx2, {
         type: 'bar',
@@ -87,7 +87,7 @@
             labels: ['Thu', 'Chi'],
             datasets: [{
                 label: 'Chi',
-                data: [day_thu,day_chi],
+                data: [month_thu,month_chi],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

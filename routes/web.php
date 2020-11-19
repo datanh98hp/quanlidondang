@@ -72,7 +72,9 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::get('/edit-donhang/{id}',[DathangController::class,'edit'])->middleware(['auth:sanctum','checkType']);
     Route::put('/update-donhang/{id}',[DathangController::class,'update'])->middleware(['auth:sanctum','checkType']);
     Route::delete('/del-donhang/{id}',[DathangController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
-    
+    // 
+    Route::delete('/del-one-mathang/{id}',[DathangController::class,'Del_one_Mathang'])->middleware(['auth:sanctum','checkType']);
+    // 
     Route::put('/hoanthanh-donhang/{id}',[DathangController::class,'hoanthanh'])->middleware(['auth:sanctum','checkType']);
     Route::get('/print-donhang/{id}',[DathangController::class,'print'])->middleware(['auth:sanctum','checkType']);
     

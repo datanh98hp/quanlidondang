@@ -3,7 +3,7 @@
     <div class="form-group center">
       <a class="btn btn-link" style="margin:0% 48%" href="/print-donhang/{{$donhang->id}}"> <i class="fas fa-print"></i> In </a>
     </div>
-    <div class="card  border-danger col-md-8" style="margin:0% 15%">
+    <div class="card  border-danger col-md-9" style="margin:0% 15%">
         
         <div class="form-froup">
           <form class="form" action="/hoanthanh-donhang/{{$donhang->id}}" method="POST" style="margin: 2% 0% 0% 70%">
@@ -12,6 +12,7 @@
             <button type="submit" class="btn btn-light "><i class="fas fa-check"></i> <span style="color: green">Hoàn thành/Xác nhận đơn hàng</span></button>
           </form>
         </div>
+        {{--  --}}
         <form action="/update-donhang/{{$donhang->id}}" method="POST">
           {{ csrf_field() }}
           {{method_field('PUT')}}
@@ -33,11 +34,15 @@
                   <th scope="">Đơn giá</th>
                   <th scope="">Đơn vị</th>
                   <th scope=""><a href="javascript:;" class="btn btn-success addRow">+</a></th>
+                  <th scope=""></a></th>
+                  <th scope=""></a></th>
                 </tr>
               </thead>
               <tbody id="content">
                 @foreach ($mathang as $item)
-                <tr>
+                  @if ($item->id_Donhang === $donhang->id)
+                  
+                  <tr>
                     <td>
                       <input type="text" class="form-control" id="TenMH" name="TenMH[]" value="{{$item->TenMH}}">
                     </td>
@@ -72,11 +77,21 @@
                         @endif>Tấm</option>
                       </select>
                     </td>
-                    <th scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></th>
-                  </tr>        
+                    <td><a href="javascript:;" class="btn btn-dark deleteRow">-</a></td>
+                    <td>
+                      <form action="del-one-mathang/{{$item->id}}" method="POST">
+                        {{ csrf_field() }}
+                        {{method_field('DELETE')}}
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endif
+                       
                 @endforeach
             
               </tbody>
+
             </table>
           </div>
 
@@ -91,9 +106,9 @@
             <input type="text" class="form-control"  name="Coc_truoc" value="{{$donhang->Coc_truoc}}">
         </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
             <button type="submit" class="btn btn-primary">Lưu</button>
           </div>
+
         </form>
       </div>
      
@@ -121,9 +136,11 @@
                         '</select>'+
                       '</td>'+
                       '<th scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></th>'+
+                      
                     '</tr>';
       $('#content').append(tr);
     });
+
     $('tbody').on('click','.deleteRow',function(){
       $(this).parent().parent().remove();
     });

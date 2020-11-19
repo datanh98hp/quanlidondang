@@ -105,7 +105,9 @@
             </tbody>
             
           </table>
-          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Tổng thu : <span style="font-weight: 800">{{$Tongthu}} VND</span></h3>
+          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Thu nhập : <span style="font-weight: 800">{{$Tongthu}} VND</span></h3>
+          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Chi tiêu : <span style="font-weight: 800"> VND</span></h3>
+          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Còn lại : <span style="font-weight: 800"> VND</span></h3>
         </div>
         
     </div>
