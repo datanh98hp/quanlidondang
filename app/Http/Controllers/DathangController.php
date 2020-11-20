@@ -94,7 +94,7 @@ class DathangController extends Controller
         //
         $donhang = Donhang::find($id);
         $username = Auth::user()->name;
-        $mathang = Mathang::all();
+        $mathang = Mathang::where('id_Donhang',$id)->get();
         return view('ketoan.EditBill',['username'=>$username,'donhang'=>$donhang,'mathang'=>$mathang]);
     }
 
@@ -107,30 +107,24 @@ class DathangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // try {
-        //             //
+        $TongGiaMH= 0;
+        try {
+                    //
         $donhang = Donhang::find($id);
         $donhang->id_user = Auth::user()->id;
         $donhang->Tg_giao = $request->input('Tg_giao');
         $donhang->Coc_truoc = $request->input('Coc_truoc');
         $donhang->Trang_thai = 'Đang xử lí';
         $donhang->Tong_gia = 0;
-        // $donhang->update();
-///
+       $donhang->update();
+  
+        Mathang::where('id_Donhang',$id)->delete(); // xóa cái cũ
 
-        $giaDon= 0;
+        
         foreach ($request->input('TenMH') as $key=>$key) {
          // cập nhật lại list mat hàng
-
-           Mathang::where('TenMH',$request->input('TenMH'))->where('updated_at','<=',now())->delete(); //xóa cái trung tên với cái cũ
-        
                 $mh = new Mathang;
-                // $mh->id_Donhang = $id;
-                // $mh->TenMH = $request->TenMH[$key];
-                // $mh->Soluong = $request->Soluong[$key];
-                // $mh->Donvi = $request->Donvi[$key];
-                // $mh->Don_gia = $request->Don_gia[$key];
+                
                 $mh->updateOrCreate([
                     'id_Donhang'=>$id,
                     'TenMH'=>$request->TenMH[$key],
@@ -138,16 +132,22 @@ class DathangController extends Controller
                     'Donvi'=>$request->Donvi[$key],
                     'Don_gia' => $request->Don_gia[$key]
                     ]);
-                
-               // $giaDon += ($mh->Soluong * $mh->Don_gia);
+                   
            // }
         }
-        $donhang->Tong_gia = $giaDon - $donhang->Coc_truoc;
-        $donhang->update(); 
+                    
+        $mh = Mathang::where('id_Donhang',$id)->get();
+        foreach ($mh as $key => $value) {
+            $TongGiaMH +=($mh[$key]->Soluong * $mh[$key]->Don_gia);
+        }
+        $donhang->Tong_gia = $TongGiaMH;
+        $donhang->update();
+
+       
         return redirect('/dathang')->with('status','Cập nhật thành công.');
-    //     } catch (\Throwable $th) {
-    //        return redirect('/dathang')->with('status','Không thể cập nhật bản ghi này ... /n'.$th);
-    //     }
+        } catch (\Throwable $th) {
+           return redirect('/dathang')->with('status','Không thể cập nhật bản ghi này ... /n'.$th);
+        }
     }
 
     /**
@@ -156,12 +156,32 @@ class DathangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function Del_one_Mathang($id){
 
         $mathang = Mathang::find($id);
-        $mathang->delete();
+
+        // CAP NHAT LẠI DƠN HÀNG
+        // $dh = Donhang::find($mathang->id_Donhang);
+        // $dh->Tong_gia = 0;$dh->update();
+        $mathang->delete();//xóa
+        
+        // $mh_of_DH = Mathang::where('id_Donhang',$dh->id); // tim ds mh còn lại trong dơn hàng
+        // $tongGiaDH = 0;
+
+        // foreach ($mh_of_DH as $key => $value) {
+        //     $tongGiaDH += ($mh_of_DH[$key]->Soluong * $mh_of_DH[$key]->Don_gia );
+        // }
+        
+        // $dh->Tong_gia = $tongGiaDH; 
+        // $dh->update();
+    
         return redirect('/dathang')->with('status','Cập nhật thành công.');
         
+    }
+    public function XacNhanXoa_one_Mathang($id){
+        
+        return view('ketoan.XoaMh',['id'=>$id]);
     }
     public function hoanthanh(Request $request, $id){
         try {

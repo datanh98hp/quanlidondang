@@ -35,24 +35,24 @@
                   <th scope="">Đơn vị</th>
                   <th scope=""><a href="javascript:;" class="btn btn-success addRow">+</a></th>
                   <th scope=""></a></th>
-                  <th scope=""></a></th>
+               
                 </tr>
               </thead>
               <tbody id="content">
                 @foreach ($mathang as $item)
-                  @if ($item->id_Donhang === $donhang->id)
+                  @if ($item->id_Donhang === $donhang->id )
                   
                   <tr>
-                    <td>
+                    <th>
                       <input type="text" class="form-control" id="TenMH" name="TenMH[]" value="{{$item->TenMH}}">
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                       <input type="number" min="0" class="form-control" id="Soluong" name="Soluong[]" value="{{$item->Soluong}}">
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                       <input type="text" class="form-control" id="Don_gia" name="Don_gia[]" value="{{$item->Don_gia}}">
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                       {{-- <input type="text" class="form-control" id="Donvi" name="Donvi[]"> --}}
                       <select class="custom-select" name="Donvi[]">
                         <option value="Cái" @if ($item->Donvi==="Cái")
@@ -76,15 +76,16 @@
                         
                         @endif>Tấm</option>
                       </select>
-                    </td>
-                    <td><a href="javascript:;" class="btn btn-dark deleteRow">-</a></td>
-                    <td>
-                      <form action="del-one-mathang/{{$item->id}}" method="POST">
-                        {{ csrf_field() }}
-                        {{method_field('DELETE')}}
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                      </form>
-                    </td>
+                    </th>
+                    <th><a href="javascript:;" class="btn btn-dark deleteRow">-</a></th>
+                    <th>
+                        {{-- <form action="del-one-mathang/{{$item->id}}" method="POST">
+                          {{ @csrf_field() }}
+                          {{method_field('DELETE')}}
+                          <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        </form>  --}}
+                        <a href="/del-one-mathang/{{$item->id}}">Xóa</a>
+                    </th>
                   </tr>
                   @endif
                        

@@ -118,6 +118,7 @@
               <th scope="col">Ngày trả</th>
               <th scope="col">Đặt cọc trước</th>
               <th scope="col">Tổng giá</th>
+              <th scope="col">Còn lại</th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
@@ -139,6 +140,7 @@
               <td>{{$item->Tg_giao}}</td>
               <td>{{ number_format($item->Coc_truoc)}}</td>
               <td>{{ number_format($item->Tong_gia)}}</td>
+              <td>{{ number_format($item->Tong_gia - $item->Coc_truoc)}}</td>
               <td>
                 <a class="btn btn-info" href="/edit-donhang/{{$item->id}}"><i class="far fa-edit"></i></a>
                 
