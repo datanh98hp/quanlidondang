@@ -16,15 +16,19 @@ class ThuchiController extends Controller
         // date("Y-m-d H:i:s");
        // $tc = Thuchi::where('created_at','')->get('created_at');
         $thuchi = Thuchi::whereDate('created_at','=', date('Y-m-d'))->get();
-        $TongThu = 0;
+        $Conlai = 0; $Tongthu=0; $Tongchi= 0;
         foreach ($thuchi as $key => $value) {
-            $TongThu+=( $thuchi[$key]->SoTen_Thu - $thuchi[$key]->SoTen_Chi);
+            $Conlai+=( $thuchi[$key]->SoTen_Thu - $thuchi[$key]->SoTen_Chi);
+            $Tongthu += $thuchi[$key]->SoTen_Thu;
+            $Tongchi += $thuchi[$key]->SoTen_Chi;
         }
 
         return view('Thuchi.Bangthuchi',
         [
             'thuchi'=>$thuchi,
-            'Tongthu'=>$TongThu
+            'Conlai'=>$Conlai,
+            'Tongthu'=>$Tongthu,
+            'Tongchi'=>$Tongchi
         ]);
     }
 
@@ -95,6 +99,7 @@ class ThuchiController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
     }
 
     /**

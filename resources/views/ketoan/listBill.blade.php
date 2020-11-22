@@ -103,7 +103,7 @@
           <div class="alert alert-success" role="alert">
                 {{ session('status') }}
             </div>
-          @endif
+        @endif
         <div>
           <button type="button" class="btn btn-primary text-center" data-toggle="modal" style="margin-bottom: 2%" data-target="#exampleModal" data-whatever="@fat">Thêm mới</button>
         </div>

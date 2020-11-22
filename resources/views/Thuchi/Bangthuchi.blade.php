@@ -89,9 +89,13 @@
                 <td>{{$item->SoTen_Thu}}</td>
                 <td>{{$item->SoTen_Chi}}</td>
                 <td>{{ $item->SoTen_Thu - $item->SoTen_Chi}}</td>
-                <td>{{$item->id_user}}</td>
                 <td>
-                  <a class="btn btn-warning" href="/edit-thuchi/"><i class="far fa-edit"></i></a>
+                  @if ($item->id_user===Auth::user()->id)
+                  {{Auth::user()->name}}
+                  @endif
+                </td>
+                <td>
+                  {{-- <a class="btn btn-warning" href="/edit-thuchi/"><i class="far fa-edit"></i></a> --}}
                 </td>
                 <td>
                   <form action="/del-thuchi/{{$item->id}}" method="POST">
@@ -105,9 +109,9 @@
             </tbody>
             
           </table>
-          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Thu nhập : <span style="font-weight: 800">{{$Tongthu}} VND</span></h3>
-          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Chi tiêu : <span style="font-weight: 800"> VND</span></h3>
-          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Còn lại : <span style="font-weight: 800"> VND</span></h3>
+          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Còn lại : <span style="font-weight: 800">{{number_format($Conlai)}} VND</span></h3>
+          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Tổng thu : <span style="font-weight: 800">{{number_format($Tongthu)}} VND</span></h3>
+          <h3 class="text-right" style="margin-right: 20px;font-weight: 1000">Tổng chi: <span style="font-weight: 800">{{number_format($Tongchi)}} VND</span></h3>
         </div>
         
     </div>

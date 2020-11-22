@@ -146,7 +146,7 @@ class DathangController extends Controller
        
         return redirect('/dathang')->with('status','Cập nhật thành công.');
         } catch (\Throwable $th) {
-           return redirect('/dathang')->with('status','Không thể cập nhật bản ghi này ... /n'.$th);
+           return redirect('/dathang');
         }
     }
 
@@ -162,7 +162,7 @@ class DathangController extends Controller
         $mathang = Mathang::find($id);
 
         // CAP NHAT LẠI DƠN HÀNG
-        // $dh = Donhang::find($mathang->id_Donhang);
+        $dh = Donhang::find($mathang->id_Donhang);
         // $dh->Tong_gia = 0;$dh->update();
         $mathang->delete();//xóa
         
@@ -175,8 +175,8 @@ class DathangController extends Controller
         
         // $dh->Tong_gia = $tongGiaDH; 
         // $dh->update();
-    
-        return redirect('/dathang')->with('status','Cập nhật thành công.');
+            
+        return redirect('/edit-donhang'.'/'.$dh->id)->with('status','Cập nhật thành công.');
         
     }
     public function XacNhanXoa_one_Mathang($id){
@@ -187,35 +187,26 @@ class DathangController extends Controller
         try {
             //
             $donhang = Donhang::find($id);
-            // $donhang->id_user = Auth::user()->id;
-            // $donhang->Tg_giao = $request->input('Tg_giao');
-            // $donhang->Coc_truoc = $request->input('Coc_truoc');
+          
             $donhang->Trang_thai = 'Hoàn thành';
-            // $donhang->Tong_gia = 0;
-            // // $donhang->update();
-            // ///
-            // // $data = [];
-            // $giaDon= 0;
-            // foreach ($request->input('TenMH') as $key=>$key) {
-            
-            //     // $mathang = Mathang::where('id_Donhang',$id)->delete();
-
-            //         # code...
-            //         $mh =  Mathang::where('id_Donhang',$id);
-            //         $mh->id_Donhang = $id;
-            //         $mh->TenMH = $request->TenMH[$key];
-            //         $mh->Soluong = $request->Soluong[$key];
-            //         $mh->Donvi = $request->Donvi[$key];
-            //         $mh->Don_gia = $request->Don_gia[$key];
-            //         $mh->save();
-            //         $giaDon += ($mh->Soluong * $mh->Don_gia);
-            // // }
-            // }
-            // $donhang->Tong_gia = $giaDon - $donhang->Coc_truoc;
+         
             $donhang->update(); 
-            return redirect('/dathang')->with('status','Cập nhật thành công. Đã xác nhận đơn hàng.');
+            return redirect('edit-donhang'.'/'.$id)->with('status','Cập nhật thành công. Đã xác nhận đơn hàng.');
             } catch (\Throwable $th) {
-            return redirect('/dathang')->with('status','Không thể cập nhật bản ghi này ... '.$th);
+            return redirect('edit-donhang'.'/'.$id)->with('status','Không thể cập nhật bản ghi này ... '.$th);
+            }
+    }
+    public function bo_hoanthanh(Request $request, $id){
+        try {
+            //
+            $donhang = Donhang::find($id);
+          
+            $donhang->Trang_thai = 'Đang xử lí';
+         
+            $donhang->update(); 
+            return redirect('edit-donhang'.'/'.$id)->with('status','Cập nhật thành công. Đã bỏ xác nhận đơn hàng.');
+            } catch (\Throwable $th) {
+            return redirect('edit-donhang'.'/'.$id)->with('status','Không thể cập nhật bản ghi này ... '.$th);
             }
     }
     public function destroy($id)

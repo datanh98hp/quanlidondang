@@ -4,13 +4,28 @@
       <a class="btn btn-link" style="margin:0% 48%" href="/print-donhang/{{$donhang->id}}"> <i class="fas fa-print"></i> In </a>
     </div>
     <div class="card  border-danger col-md-9" style="margin:0% 15%">
-        
+      @if (session('status'))
+      <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+      </div>
+      @endif
         <div class="form-froup">
-          <form class="form" action="/hoanthanh-donhang/{{$donhang->id}}" method="POST" style="margin: 2% 0% 0% 70%">
-            {{ csrf_field() }}
-            {{method_field('PUT')}}
-            <button type="submit" class="btn btn-light "><i class="fas fa-check"></i> <span style="color: green">Hoàn thành/Xác nhận đơn hàng</span></button>
-          </form>
+          @if ($donhang->Trang_thai==='Hoàn thành')
+
+            <form class="form" action="/undo-hoanthanh-donhang/{{$donhang->id}}" method="POST" style="margin: 2% 0% 0% 70%">
+              {{ csrf_field() }}
+              {{method_field('PUT')}}
+              <button type="submit" class="btn btn-light "><i class="fas fa-uncheck"></i> <span style="color: green"> Hủy chốt đơn </span></button>
+            </form>
+   
+          @else
+            
+            <form class="form" action="/hoanthanh-donhang/{{$donhang->id}}" method="POST" style="margin: 2% 0% 0% 70%">
+              {{ csrf_field() }}
+              {{method_field('PUT')}}
+              <button type="submit" class="btn btn-light "><i class="fas fa-check"></i> <span style="color: green">Chốt đơn hàng</span></button>
+            </form>
+          @endif
         </div>
         {{--  --}}
         <form action="/update-donhang/{{$donhang->id}}" method="POST">
@@ -38,13 +53,13 @@
                
                 </tr>
               </thead>
-              <tbody id="content">
+              <tbody id="content" >
                 @foreach ($mathang as $item)
                   @if ($item->id_Donhang === $donhang->id )
                   
                   <tr>
                     <th>
-                      <input type="text" class="form-control" id="TenMH" name="TenMH[]" value="{{$item->TenMH}}">
+                      <input type="text" class="form-control"  id="TenMH" name="TenMH[]" value="{{$item->TenMH}}">
                     </th>
                     <th>
                       <input type="number" min="0" class="form-control" id="Soluong" name="Soluong[]" value="{{$item->Soluong}}">
@@ -107,7 +122,7 @@
             <input type="text" class="form-control"  name="Coc_truoc" value="{{$donhang->Coc_truoc}}">
         </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="submit" @if($donhang->Trang_thai==="Hoàn thành"){ disabled } @endif class="btn btn-primary">Lưu</button>
           </div>
 
         </form>

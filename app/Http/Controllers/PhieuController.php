@@ -75,9 +75,9 @@ class PhieuController extends Controller
 
                     $vatlieu->TenVL = $request->TenVL[$key];
                     $vatlieu->Soluong_ton +=  $request->Soluong_ton[$key];
-                    $vatlieu->NSX = $request->NSX[$key];
-                    $vatlieu->Don_gia = $request->Don_gia[$key];
-                    $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
+                    // $vatlieu->NSX = $request->NSX[$key];
+                    // $vatlieu->Don_gia = $request->Don_gia[$key];
+                    // $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
                     $vatlieu->id_phieunhap  = $phieunhap->id;
                     $vatlieu->last_change = "+". $request->Soluong_ton[$key];
                     // $vatlieu->id_phieuxuat  = 1;
@@ -141,7 +141,7 @@ class PhieuController extends Controller
         
         return redirect('/vatlieu')->with('status','Thêm thành công...');
         } catch (\Throwable $th) {
-            return redirect('/vatlieu')->withErrors($validator);
+            return redirect('/vatlieu')->with('status','Vui lòng nhập đầy đủ thông tin.');
         }
         
         // 

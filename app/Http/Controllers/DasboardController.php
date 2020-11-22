@@ -28,15 +28,19 @@ class DasboardController extends Controller
         $TongDonhang =Donhang::whereDate('created_at',date('Y-m-d') )->count();
         $TongDonhangHoanThanh = Donhang::whereDate('created_at',date('Y-m-d') )
                                         ->where('Trang_thai','Hoàn thành')->count();
-        $DH_HT = Donhang::where('Trang_thai','Hoàn thành')->get();
-        $tong_gt = 0;
+        $DH_HT = Donhang::where('Trang_thai','Hoàn thành')->whereDate('created_at',date('Y-m-d') )->get();
 
+        $tong_gt = 0;
+        foreach ($DH_HT as $key => $value) {
+            $tong_gt+= $DH_HT[$key]->Tong_gia;
+        }
+        // 
         $thuchi = Thuchi::all();
 
         $day = date('Y-m-d');
 
-        $thuchiInday = Thuchi::whereMonth('created_at',date('d') )->get();
-        $thuchiMonth = Thuchi::whereMonth('created_at',date('m') )->get();
+        $thuchiInday = Thuchi::whereDate('created_at',date('Y-m-d'))->get();
+        $thuchiMonth = Thuchi::whereDate('created_at',date('Y-m-d'))->get();
         // dd( $thuchiInday);
         $month_thu = 0;
         $month_chi = 0;
@@ -50,6 +54,7 @@ class DasboardController extends Controller
          foreach ($thuchiInday as $key => $value) {
              $day_thu+=$thuchi[$key]->SoTen_Thu;
              $day_chi+=$thuchi[$key]->SoTen_Chi;
+
          }
         $a = $thuchi->count();
         $arr_data = $thuchi->toArray();

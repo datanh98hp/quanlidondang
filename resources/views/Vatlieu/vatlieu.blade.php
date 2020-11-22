@@ -13,12 +13,12 @@
         </thead>
         <tbody>
           @foreach ($ds_Vatlieu as $item)
-          <tr>
-            <th scope="row">{{$item->id}}</th>
-            <td>{{$item->TenVL}}</td>
-            <td>{{$item->Soluong_ton}}</td>
-            <td>{{$item->Donvi_tinh}}</td>
-          </tr>    
+            <tr>
+              <th scope="row">{{$item->id}}</th>
+              <td>{{$item->TenVL}}</td>
+              <td>{{$item->Soluong_ton}}</td>
+              <td>{{$item->Donvi_tinh}}</td>
+            </tr>  
           @endforeach
           
         </tbody>
@@ -44,6 +44,7 @@
           <tbody>
 
             @foreach ($phieunhap as $item)
+
             <tr>
               <th scope="row">{{$item->id}}</th>
               <td>
@@ -57,7 +58,8 @@
               <td>
                 <a class="btn btn-info" href="/chitiet-phieunhap-vatlieu/{{$item->id}}">Chi tiết</a>
               </td>
-            </tr>    
+            </tr>  
+
             @endforeach
           
           </tbody>
@@ -104,16 +106,22 @@
       </div>
     </div>
   </div>
-  @if ($errors->any())
-  <div class="alert alert-danger">
-      <ul>
-          @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-          @endforeach
-      </ul>
-  </div>
- @endif
+
       <hr>
+      {{-- @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+     @endif --}}
+     @if (session('status'))
+      <div class="alert alert-danger">
+          {{ session('status') }}
+      </div>
+    @endif
       <div class="row" style="padding: 10px">
         <div class="col-sm-6">
           <div class="card border-primary mb-4" style="max-width: 100%;margin:10pt">
@@ -206,7 +214,6 @@
               {{--  --}}
               <form action="/phieuxuat-vatlieu" method="POST">
                 {{ csrf_field() }}
-               
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Người nhập phiếu :</label>
                   <input type="text" class="form-control" name="" value="{{$username}}" disabled placeholder="">

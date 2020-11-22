@@ -53,17 +53,20 @@
       </div>
       <h3 class="text-right" style="margin-right: 20px;font-weight: 1000"> Tổng :<span class="total_data" style="padding: 30px;font-weight: 600">{{ number_format($tongGia)}} VND</span></h3>
     </div>
-      
+    <h5 class=" mx-4 text-left my-4">Người lập đơn</h5>
+    <div class="mx-5 center">
+      <p>{{Auth::user()->name}}</p>
+    </div>
   </div>
   <script>
     $(document).ready(function(){
       {
-      var txt;
-      if(confirm('Bạn có muốn In trang này')){
+      // var txt;
+      // if(confirm('Bạn có muốn In trang này')){
         window.print();
-      }else{
+      // }else{
         
-      }
+      // }
     }
     });
   </script>

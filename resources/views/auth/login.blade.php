@@ -1,9 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
+            <h2>Đăng nhập</h2>
         </x-slot>
-
+        
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))
@@ -33,14 +34,14 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
+                {{-- @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Quên mật khẩu ?') }}
                     </a>
-                @endif
+                @endif --}}
 
                 <x-jet-button class="ml-4">
-                    {{ __('Login') }}
+                    {{ __('Đăng nhập') }}
                 </x-jet-button>
             </div>
         </form>

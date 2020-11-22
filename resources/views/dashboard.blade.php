@@ -34,8 +34,8 @@
           <div class="card border-success mb-4 text-center" style="max-width: 18rem;">
            
             <div class="card-body text-success">
-              <h5 class="card-title">Tổng thu nhập trong ngày</h5>
-              <h1 class="card-text">{{number_format($count_gt_Dh_ht)}}</h1>
+              <h5 class="card-title">Tổng thu nhập Đơn hàng trong ngày</h5>
+              <h3 class="card-text">{{number_format($count_gt_Dh_ht)}}</h3>
               <h4 class="card-text">VND</h4>
             </div>
           </div>
@@ -70,7 +70,7 @@
             <div class="card-body">
               <canvas id="charDT" width="100%" height="30">
             </div>
-            <div class="card-footer small text-muted"> Updated : {{now()}}</div>
+            <div class="card-footer small text-muted"> Cập nhật : {{now()}}</div>
         </div>
         
     </div>

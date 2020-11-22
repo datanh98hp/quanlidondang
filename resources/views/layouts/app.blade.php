@@ -25,9 +25,9 @@
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
     </head>
-    <body class="font-sans antialiased sb-nav-fixed">
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-dropdown')
+    <body class="font-sans container-fluid antialiased sb-nav-fixed">
+        {{-- <div class="min-h-screen bg-gray-100">
+            {{-- @livewire('navigation-dropdown') --}}
 
             <!-- Page Heading -->
             {{-- <header class="bg-white shadow">
@@ -44,159 +44,161 @@
                     width: 50%;
                     }
             </style>
-            <div id="layoutSidenav">
-                <div id="layoutSidenav_nav">
-                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                        <div class="sb-sidenav-menu">
-                            <div class="nav">
-                                <div class="media center">
-                                    @if(Auth::user()->type==2)
-                                        <img src="https://orbitcareers.com/wp-content/uploads/2019/04/Accounting-Icon.png" width="60%"  class="mr-3" alt="permission_avt">
-                                    @elseif(Auth::user()->type==1)
-                                        <img src="https://www.iconfinder.com/data/icons/iphone-black-people-svg-icons/20/admin_add_user_edit_delete_worker_up_unstick_unlock-512.png" class="mr-3" alt="...">
-                                    @endif
-                                    <div class="media-body">
-                                    </div>
-                                  </div>
-                                {{-- ADMIN --}}
-                                @if (Auth::user()->type<=3)
-                                    <div class="sb-sidenav-menu-heading">Quản trị</div>
-                                    <a class="nav-link" href="/dashboard">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                        Dashboard
-                                    </a>
-                                    {{-- KE TOAN --}}
-                                @elseif(Auth::user()->type<=3)
-                                    
-                                @endif
-                                {{--  --}}
-                                @if(Auth::user()->type <=3)
-                                <div class="sb-sidenav-menu-heading">Công việc</div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTasks" aria-expanded="false" aria-controls="collapseLayouts">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                    Nhắc công việc
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="collapseTasks" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="/task">Event</a>
-                                        {{-- <a class="nav-link" href="/thongke">Thống kê</a> --}}
-                                    </nav>
-                                </div>
-                                @endif
-                                {{--  --}}
-                                @if(Auth::user()->type <=2)
-                                <div class="sb-sidenav-menu-heading">Nghiệp vụ</div>
-                                <a class="nav-link collapsed" href="/dathang" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                    Đơn đặt hàng
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="/inthiepcuoi">In Thiệp Cưới</a>
-                                        <a class="nav-link" href="/dathang">Đơn hàng</a>
-                                        
-                                    </nav>
-                                    
-                                </div>
-                                @endif
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                    Quản lí
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                {{-- ADMIN _ KE TOAN --}}
-                                @if(Auth::user()->type <=3)
-                                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                        {{-- ADMIN --}}
-                                       
-                                        {{-- ---Ke toan---- --}}
-                                        @if (Auth::user()->type <= 3)
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                            Thiết bị - vật liệu
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                        </a>
-                                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                            <nav class="sb-sidenav-menu-nested nav">
-                                                <a class="nav-link" href="/vatlieu">Vật liệu</a>
-                                                {{-- <a class="nav-link" href="/vattu">Vật tư</a> --}}
-                                                {{-- <a class="nav-link" href="/baocao">Báo cáo</a> --}}
-                                            </nav>
-                                            
-                                        </div>
-                                        @if (Auth::user()->type <= 2)
-                                            <a class="nav-link" href="/thuchi">Quản lí thu chi</a>
-                                        @endif
-                                      
-                                            
-                                       @endif
-                                       {{-- @if (Auth::user()->type == 3)
-                                       <a class="nav-link" href="/danhsachvatlieucan">
-                                            Danh sách vật liệu cần   
-                                        </a>
-                                        @endif --}}
-                                    </nav>  
-                                </div>
-                                @endif
-
-                                @if (Auth::user()->type==1)
-                                    <div class="sb-sidenav-menu-heading">Nhân sự</div>
-                                    @if (Auth::user()->type == 1)
-                                            <a class="nav-link" href="/usermanage">
-                                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                                                Quản lí người dùng
-                                            </a>
-                                    @endif
-                                    <a class="nav-link" href="/nhanvien">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                        Nhân viên
-                                    </a>
-                                    {{-- <a class="nav-link" href="#">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                        Bảng lương
-                                    </a> --}}
-                                @endif
-                                
-                            </div>
-                        </div>
-                        <div class="sb-sidenav-footer">
-                            <div class="small">Trung tâm</div>
-                            Quảng cáo Thiện Phúc
-                        </div>
-                    </nav>
-                </div>
-                <div id="layoutSidenav_content">
-                    <main>  
-                        
-                        @section('status')
-                        <div class="alert alert-success" role="alert">
-                        
-                        </div>
-                        @endsection
-                        <!-- Page Content -->
-                            {{ $slot }}
-                        {{-- @yield('content') --}}
-                           
-                    </main>
-                    <footer class="py-4 bg-light mt-auto">
-                        <div class="container-fluid">
-                            <div class="d-flex align-items-center justify-content-between small">
-                                <div class="text-muted">Copyright &copy; CNT57CL 2020</div>
-                                <div>
-                                    <a href="#">Ứng dụng</a>
-                                    &middot;
-                                    <a href="#">DA Terms &amp; Đồ Án Tốt Nghiệp </a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-            </div>
             
         </div>
+        @livewire('navigation-dropdown')
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="media center">
+                                @if(Auth::user()->type==2)
+                                    <img src="https://orbitcareers.com/wp-content/uploads/2019/04/Accounting-Icon.png" width="60%"  class="mr-3" alt="permission_avt">
+                                @elseif(Auth::user()->type==1)
+                                    <img src="https://www.iconfinder.com/data/icons/iphone-black-people-svg-icons/20/admin_add_user_edit_delete_worker_up_unstick_unlock-512.png" class="mr-3" alt="...">
+                                @endif
+                                <div class="media-body">
+                                </div>
+                              </div>
+                            {{-- ADMIN --}}
+                            @if (Auth::user()->type<=3)
+                                <div class="sb-sidenav-menu-heading">Quản trị</div>
+                                <a class="nav-link" href="/dashboard">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    Dashboard
+                                </a>
+                                {{-- KE TOAN --}}
+                            @elseif(Auth::user()->type<=3)
+                                
+                            @endif
+                            {{--  --}}
+                            @if(Auth::user()->type <=3)
+                            <div class="sb-sidenav-menu-heading">Công việc</div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTasks" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Nhắc công việc
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseTasks" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/task">Event</a>
+                                    {{-- <a class="nav-link" href="/thongke">Thống kê</a> --}}
+                                </nav>
+                            </div>
+                            @endif
+                            {{--  --}}
+                            @if(Auth::user()->type <=2)
+                            <div class="sb-sidenav-menu-heading">Nghiệp vụ</div>
+                            <a class="nav-link collapsed" href="/dathang" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Đơn đặt hàng
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/inthiepcuoi">In Thiệp Cưới</a>
+                                    <a class="nav-link" href="/dathang">Đơn hàng</a>
+                                    
+                                </nav>
+                                
+                            </div>
+                            @endif
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Quản lí
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            {{-- ADMIN _ KE TOAN --}}
+                            @if(Auth::user()->type <=3)
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    {{-- ADMIN --}}
+                                   
+                                    {{-- ---Ke toan---- --}}
+                                    @if (Auth::user()->type <= 3)
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                        Thiết bị - vật liệu
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="/vatlieu">Vật liệu</a>
+                                            {{-- <a class="nav-link" href="/vattu">Vật tư</a> --}}
+                                            {{-- <a class="nav-link" href="/baocao">Báo cáo</a> --}}
+                                        </nav>
+                                        
+                                    </div>
+                                    @if (Auth::user()->type <= 2)
+                                        <a class="nav-link" href="/thuchi">Quản lí thu chi</a>
+                                    @endif
+                                  
+                                        
+                                   @endif
+                                   {{-- @if (Auth::user()->type == 3)
+                                   <a class="nav-link" href="/danhsachvatlieucan">
+                                        Danh sách vật liệu cần   
+                                    </a>
+                                    @endif --}}
+                                </nav>  
+                            </div>
+                            @endif
 
+                            @if (Auth::user()->type==1)
+                                <div class="sb-sidenav-menu-heading">Nhân sự</div>
+                                @if (Auth::user()->type == 1)
+                                        <a class="nav-link" href="/usermanage">
+                                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                            Quản lí người dùng
+                                        </a>
+                                @endif
+                                <a class="nav-link" href="/nhanvien">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                    Nhân viên
+                                </a>
+                                {{-- <a class="nav-link" href="#">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Bảng lương
+                                </a> --}}
+                            @endif
+                            
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Trung tâm</div>
+                        Quảng cáo Thiện Phúc
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>  
+                    
+                    @section('status')
+                    <div class="alert alert-success" role="alert">
+                    
+                    </div>
+                    @endsection
+                    <!-- Page Content -->
+                        {{ $slot }}
+                    {{-- @yield('content') --}}
+                       
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <img style="max-width: 30px;" class="rounded-circle" src="https://scontent.fdad1-1.fna.fbcdn.net/v/t1.0-9/75492411_1374272992735373_3186880362290610176_n.jpg?_nc_cat=105&ccb=2&_nc_sid=7aed08&_nc_ohc=RI4XYLBtUX4AX-nver3&_nc_ht=scontent.fdad1-1.fna&oh=d6016fec497829836c525b2fc08a226b&oe=5FDFC718">
+                            <div class="text-muted">Copyright &copy; CNT57CL 2020</div>
+                            <div>
+                                <a href="#">Ứng dụng</a>
+                                &middot;
+                                <a href="#">DA Terms &amp; Đồ Án Tốt Nghiệp </a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
         @stack('modals')
 
         @livewireScripts
