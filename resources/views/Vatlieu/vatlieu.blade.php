@@ -317,7 +317,7 @@
                           '<td class="show_when_create">'+
                           
                             '<select class="custom-select" name="Donvi[]">'+
-                              '<option selected>Chọn...</option>'+
+                              '<option value="" selected>...Chọn...</option>'+
                               '<option value="Cái">Cái</option>'+
                               '<option value="Chiếc">Chiếc</option>'+
                               '<option value="M">M</option>'+
@@ -392,7 +392,8 @@
                             '@endforeach'+
                           '</select>');
         var timeClick = 0;
-        // $('.show_when_create').hide();
+        $('.show_when_create').hide();
+
         $('#check_input').click(function(){
          
           timeClick++;
