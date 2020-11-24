@@ -40,7 +40,7 @@ class DasboardController extends Controller
         $day = date('Y-m-d');
 
         $thuchiInday = Thuchi::whereDate('created_at',date('Y-m-d'))->get();
-        $thuchiMonth = Thuchi::whereDate('created_at',date('Y-m-d'))->get();
+        $thuchiMonth = Thuchi::whereMonth('created_at',date('n'))->get();
         // dd( $thuchiInday);
         $month_thu = 0;
         $month_chi = 0;

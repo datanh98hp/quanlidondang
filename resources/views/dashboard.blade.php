@@ -78,8 +78,8 @@
    
 </x-app-layout>
 <script>
-    var month_thu = <?php echo json_encode($month_thu); ?>;
-    var month_chi = <?php echo json_encode($month_chi); ?>;
+    var month_thu = <?php echo ($month_thu); ?>;
+    var month_chi = <?php echo ($month_chi); ?>;
     var ctx2 = document.getElementById('charDT');
     var myChart = new Chart(ctx2, {
         type: 'bar',
