@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
+            {{ __('Thông tin tài khoản') }}
         </h2>
     </x-slot>
 
@@ -17,25 +17,25 @@
                 </div>
             @endif
 
-            @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
+            {{-- @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
                 <x-jet-section-border />
 
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.two-factor-authentication-form')
                 </div>
-            @endif
+            @endif --}}
 
-            <x-jet-section-border />
-
+            {{-- <x-jet-section-border /> --}}
+{{-- 
             <div class="mt-10 sm:mt-0">
                 @livewire('profile.logout-other-browser-sessions-form')
-            </div>
+            </div> --}}
 
-            <x-jet-section-border />
+            {{-- <x-jet-section-border /> --}}
 
-            <div class="mt-10 sm:mt-0">
+            {{-- <div class="mt-10 sm:mt-0">
                 @livewire('profile.delete-user-form')
-            </div>
+            </div> --}}
         </div>
     </div>
 </x-app-layout>
