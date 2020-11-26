@@ -11,18 +11,18 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 class DasboardController extends Controller
 {
     //
-    function dates_month($month, $year) {
-        $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-        $dates_month = array();
+    // function dates_month($month, $year) {
+    //     $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    //     $dates_month = array();
     
-        for ($i = 1; $i <= $num; $i++) {
-            $mktime = mktime(0, 0, 0, $month, $i, $year);
-            $date = date("d-M-Y", $mktime);
-            $dates_month[$i] = $date;
-        }
+    //     for ($i = 1; $i <= $num; $i++) {
+    //         $mktime = mktime(0, 0, 0, $month, $i, $year);
+    //         $date = date("d-M-Y", $mktime);
+    //         $dates_month[$i] = $date;
+    //     }
     
-        return $dates_month;
-    }
+    //     return $dates_month;
+    // }
     public function display()
     {
         $TongDonhang =Donhang::whereDate('created_at',date('Y-m-d') )->count();
@@ -61,8 +61,6 @@ class DasboardController extends Controller
         $a = $thuchi->count();
         $arr_data = $thuchi->toArray();
         // 
-
-
         return view('dashboard',[
             'countDonhang'=>$TongDonhang,
             'TongDonhang_thang'=>$TongDonhang_thang,
