@@ -26,6 +26,8 @@ class DasboardController extends Controller
     public function display()
     {
         $TongDonhang =Donhang::whereDate('created_at',date('Y-m-d') )->count();
+        $TongDonhang_thang =Donhang::whereMonth('created_at',date('m') )->count();
+
         $TongDonhangHoanThanh = Donhang::whereDate('created_at',date('Y-m-d') )
                                         ->where('Trang_thai','Hoàn thành')->count();
         $DH_HT = Donhang::where('Trang_thai','Hoàn thành')->whereDate('created_at',date('Y-m-d') )->get();
@@ -63,6 +65,7 @@ class DasboardController extends Controller
 
         return view('dashboard',[
             'countDonhang'=>$TongDonhang,
+            'TongDonhang_thang'=>$TongDonhang_thang,
             'countDh_Hoanthanh'=>$TongDonhangHoanThanh,
             'count_gt_Dh_ht'=>$tong_gt,
            'month_thu'=>$month_thu,

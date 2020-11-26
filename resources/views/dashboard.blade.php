@@ -16,18 +16,26 @@
     </div> --}}
     <div class="row" style="margin:30px;justify-content: space-evenly">
         <div class="card border-primary mb-3" style="max-width: 100%;">
+          {{-- <div class="card-header">Tổng hóa đơn</div> --}}
+          <div class="card-body text-link mb-4 text-center">
+            <h5 class="card-title">Tổng đơn hàng trong tháng</h5>
+            <h3 class="card-text">{{$TongDonhang_thang}}</h3>
+            <h4 class="card-text">Đơn hàng</h4>
+          </div>
+        </div>
+          <div class="card border-primary mb-4" style="max-width: 100%;">
             {{-- <div class="card-header">Tổng hóa đơn</div> --}}
             <div class="card-body text-primary text-center">
               <h5 class="card-title">Tổng đơn hàng trong ngày</h5>
-              <h1 class="card-text">{{$countDonhang}}</h1>
+              <h3 class="card-text">{{$countDonhang}}</h3>
               <h4 class="card-text">Đơn hàng</h4>
             </div>
           </div>
           <div class="card border-success mb-4 text-center" style="max-width: 18rem;">
-           
+    
             <div class="card-body">
               <h5 class="card-title">Tổng đơn hàng hoàn thành trong ngày</h5>
-              <h1 class="card-text">{{$countDh_Hoanthanh}}</h1>
+              <h3 class="card-text">{{$countDh_Hoanthanh}}</h3>
               <h4 class="card-text">Đơn hàng</h4>
             </div>
           </div>
@@ -43,7 +51,7 @@
            
             <div class="card-body text-danger">
               <h5 class="card-title">Tổng thu/chi tiêu trong ngày</h5>
-              <h4 class="">{{ number_format($day_thu).' / '.number_format($day_chi) }}</h4>
+              <h3 class="card-text">{{ number_format($day_thu).' / '.number_format($day_chi) }}</h3>
               <h4 class="card-text">VND</h4>
             </div>
           </div>
