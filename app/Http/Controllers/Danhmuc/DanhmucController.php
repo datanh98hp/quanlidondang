@@ -1,10 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Danhmuc;
+use App\Models\Khachhang;
+use App\Models\Donhang;
+use App\Models\Banggia;
+use App\Models\Nhacungcap;
+use App\Models\Vatlieu;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FullCalendarEventMasterController extends Controller
+class DanhmucController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +18,13 @@ class FullCalendarEventMasterController extends Controller
      */
     public function index()
     {
-        //
+        //lay thong tin tat ca danh muc
+        $kh= Khachhang::all();
+        $dh = Donhang::all();
+        $bg = Banggia::all();
+        $ncc = Nhacungcap::all();
+        $vl = Vatlieu::all();
+        return view('danhmuc.Danhmuc',['kh'=>$kh,'dh'=>$dh,'bg'=>$bg,'ncc'=>$ncc,'vl'=>$vl]);
     }
 
     /**

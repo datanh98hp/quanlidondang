@@ -10,6 +10,11 @@ use App\Http\Controllers\ManagerUserController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\PhieuController;
 use App\Http\Controllers\ThuchiController;
+use App\Http\Controllers\Danhmuc\DanhmucController;
+use App\Http\Controllers\Danhmuc\KhachhangController;
+use App\Http\Controllers\Danhmuc\BanggiaController;
+use App\Http\Controllers\Danhmuc\NhaCungCapController;
+
 use App\Http\Middleware\ChecTypeUser;
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +95,45 @@ Route::group(['auth:sanctun' => 'vertified'], function () {
     Route::post('/create-thuchi',[ThuchiController::class,'store'])->middleware(['auth:sanctum','checkType']);
     Route::delete('/del-thuchi/{id}',[ThuchiController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
 // 
+
+/////////////// addition 
+
+Route::get('/danh-muc',[DanhmucController::class,'index'])->middleware(['auth:sanctum','checkType']);
+
+Route::get('/thongbao',function ()
+{
+    return 'Cập nhật thành công.';
+} );
+    // khach hang
+    Route::get('/edit-kh/{id}',[KhachhangController::class,'edit'])->middleware(['auth:sanctum','checkType']);
+    Route::put('/update-kh/{id}',[KhachhangController::class,'update'])->middleware(['auth:sanctum','checkType']); 
+    
+   
+
+    Route::post('/create-kh',[KhachhangController::class,'store'])->middleware(['auth:sanctum','checkType']); 
+    Route::delete('/del-kh/{id}',[KhachhangController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/del-kh/{id}',[KhachhangController::class,'xac_nhan_xoa'])->middleware(['auth:sanctum','checkType']);
+
+    /// Bảng giá
+    Route::post('/create-bg',[BanggiaController::class,'store'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/edit-bg/{id}',[BanggiaController::class,'edit'])->middleware(['auth:sanctum','checkType']);
+    Route::put('/update-bg/{id}',[BanggiaController::class,'update'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/del-bg/{id}',[BanggiaController::class,'xac_nhan_xoa'])->middleware(['auth:sanctum','checkType']);
+    Route::delete('/del-bg/{id}',[BanggiaController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
+
+    //// NCC
+    Route::post('/create-ncc',[NhaCungCapController::class,'store'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/edit-ncc/{id}',[NhaCungCapController::class,'edit'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/del-ncc/{id}',[NhaCungCapController::class,'xac_nhan_xoa'])->middleware(['auth:sanctum','checkType']);
+    Route::delete('/del-ncc/{id}',[NhaCungCapController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
+    Route::put('/update-ncc/{id}',[NhaCungCapController::class,'update'])->middleware(['auth:sanctum','checkType']);
+
+// vat lieu
+    Route::post('/create-vl',[VatlieuController::class,'store'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/edit-vl/{id}',[VatlieuController::class,'edit'])->middleware(['auth:sanctum','checkType']);
+    Route::put('/update-vl/{id}',[VatlieuController::class,'update'])->middleware(['auth:sanctum','checkType']);
+    Route::get('/del-vl/{id}',[VatlieuController::class,'xac_nhan_xoa'])->middleware(['auth:sanctum','checkType']);
+    Route::delete('/del-vl/{id}',[VatlieuController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
 
 
 

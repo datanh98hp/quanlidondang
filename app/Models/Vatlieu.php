@@ -14,7 +14,7 @@ class Vatlieu extends Model
     protected $fillable = [
         'TenVL',
         'Soluong_ton',
-        'NSX',
+        'id_ncc',
         'Don_gia',
         'last_change',
         'Donvi_tinh',

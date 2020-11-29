@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Vatlieu;
-use App\Models\Nhacungcap;
+namespace App\Http\Controllers\Danhmuc;
+use App\Models\Khachhang;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class VatlieuController extends Controller
+class KhachhangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class VatlieuController extends Controller
     public function index()
     {
         //
-        return view('Vatlieu.vatlieu');
     }
 
     /**
@@ -37,16 +36,17 @@ class VatlieuController extends Controller
     public function store(Request $request)
     {
         //
-        $vl = new Vatlieu;
-        $vl->TenVL = $request->input('TenVL');
-        $vl->Soluong_ton = $request->input('Soluong_ton');
-        $vl->Don_gia = $request->input('Don_gia');
-        $vl->Donvi_tinh = $request->input('Donvi_tinh');
-        $vl->id_ncc = $request->input('id_ncc');
-        
-        $vl->save();
-         return redirect('/danh-muc')->with('status','Thêm vật liệu mới thành công.');
-    }
+        $kh = new Khachhang;
+        $kh->Hoten = $request->input('Hoten');
+
+        $kh->SDT = $request->input('SDT');
+        $kh->Email = $request->input('Email');
+        $kh->typeKH = $request->input('typeKH');
+        $kh->Cty = $request->input('Cty');
+
+        $kh->save();
+        return redirect('/danh-muc') ->with('statusKH'.'Thêm thành công.');
+    }   
 
     /**
      * Display the specified resource.
@@ -68,9 +68,8 @@ class VatlieuController extends Controller
     public function edit($id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $ncc = Nhacungcap::all();
-        return view('danhmuc.vatlieu.Edit-vl',['vl'=>$vl,'ncc'=>$ncc]);
+        $kh = Khachhang::find($id);
+        return view('Danhmuc.khachhang.edit-danhmuc-kh',['kh'=>$kh]);
     }
 
     /**
@@ -83,16 +82,17 @@ class VatlieuController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $vl->TenVL = $request->input('TenVL');
-        $vl->Soluong_ton = $request->input('Soluong_ton');
-        $vl->Don_gia = $request->input('Don_gia');
-        $vl->Donvi_tinh = $request->input('Donvi_tinh');
-        $vl->id_ncc = $request->input('id_ncc');
-        
-        $vl->save();
+        $kh = Khachhang::find($id);
+        $kh->Hoten = $request->input('Hoten');
 
-        return redirect('/danh-muc')->with('status','Cập nhật thông tin vật liệu thành công.');
+        $kh->SDT = $request->input('SDT');
+        $kh->Email = $request->input('Email');
+        $kh->typeKH = $request->input('typeKH');
+        $kh->Cty = $request->input('Cty');
+
+        $kh->update();
+
+        return redirect('/thongbao');
     }
 
     /**
@@ -101,15 +101,14 @@ class VatlieuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function xac_nhan_xoa($id)
-    {
-        return view('danhmuc.vatlieu.xoa-vl',['id'=>$id]);
+    public function xac_nhan_xoa($id){
+        return view('danhmuc.khachhang.xoa-kh',['id'=>$id]);
     }
     public function destroy($id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $vl->delete();
-        return redirect('/danh-muc')->with('statusVL','Xóa thành công.');
+        $kh = Khachhang::find($id);
+        $kh->delete();
+        return redirect('/danh-muc')->with('statusKH','Xóa thành công.');
     }
 }

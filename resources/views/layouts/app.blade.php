@@ -131,6 +131,7 @@
                                     </div>
                                     @if (Auth::user()->type <= 2)
                                         <a class="nav-link" href="/thuchi">Quản lí thu chi</a>
+                                        <a class="nav-link" href="/danh-muc">Danh mục</a>
                                     @endif
                                   
                                         
@@ -161,6 +162,24 @@
                                     Bảng lương
                                 </a> --}}
                             @endif
+                            {{-- @if (Auth::user()->type==1) --}}
+                               
+                            <div class="sb-sidenav-menu-heading">Báo cáo</div>
+                            <a class="nav-link collapsed" href="/dathang" data-toggle="collapse" data-target="#collapseLayoutsBc" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Báo cáo thống kê
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayoutsBc" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">Báo cáo tồn kho</a>
+                                    <a class="nav-link" href="#">Báo cáo thu chi</a>
+                                    <a class="nav-link" href="#">Báo công nợ của KH</a>
+                 
+                                </nav>
+                                
+                            </div>
+                            {{-- @endif --}}
                             
                         </div>
                     </div>
@@ -217,6 +236,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
         
+        <script src=" https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
       

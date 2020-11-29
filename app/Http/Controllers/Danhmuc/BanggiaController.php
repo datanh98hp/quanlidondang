@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Vatlieu;
-use App\Models\Nhacungcap;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Danhmuc;
 
-class VatlieuController extends Controller
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Banggia;
+
+class BanggiaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,6 @@ class VatlieuController extends Controller
     public function index()
     {
         //
-        return view('Vatlieu.vatlieu');
     }
 
     /**
@@ -26,6 +26,7 @@ class VatlieuController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -37,15 +38,13 @@ class VatlieuController extends Controller
     public function store(Request $request)
     {
         //
-        $vl = new Vatlieu;
-        $vl->TenVL = $request->input('TenVL');
-        $vl->Soluong_ton = $request->input('Soluong_ton');
-        $vl->Don_gia = $request->input('Don_gia');
-        $vl->Donvi_tinh = $request->input('Donvi_tinh');
-        $vl->id_ncc = $request->input('id_ncc');
-        
-        $vl->save();
-         return redirect('/danh-muc')->with('status','Thêm vật liệu mới thành công.');
+        $bg = new Banggia;
+        $bg->TenLoai = $request->input('TenLoai');
+        $bg->Dongia = $request->input('Dongia');
+        $bg->Donvi = $request->input('Donvi');
+        $bg->save();
+
+        return redirect('danh-muc')->with('statusBG','Thêm loại sản phẩm thành công.');
     }
 
     /**
@@ -68,9 +67,8 @@ class VatlieuController extends Controller
     public function edit($id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $ncc = Nhacungcap::all();
-        return view('danhmuc.vatlieu.Edit-vl',['vl'=>$vl,'ncc'=>$ncc]);
+        $bg = Banggia::find($id);
+        return view('danhmuc.banggia.Edit-loai-mh',['bg'=>$bg]);
     }
 
     /**
@@ -83,16 +81,12 @@ class VatlieuController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $vl->TenVL = $request->input('TenVL');
-        $vl->Soluong_ton = $request->input('Soluong_ton');
-        $vl->Don_gia = $request->input('Don_gia');
-        $vl->Donvi_tinh = $request->input('Donvi_tinh');
-        $vl->id_ncc = $request->input('id_ncc');
-        
-        $vl->save();
-
-        return redirect('/danh-muc')->with('status','Cập nhật thông tin vật liệu thành công.');
+        $bg = Banggia::find($id);
+        $bg->TenLoai = $request->input('TenLoai');
+        $bg->Dongia = $request->input('Dongia');
+        $bg->Donvi = $request->input('Donvi');
+        $bg->save();
+        return redirect('/thongbao');
     }
 
     /**
@@ -103,13 +97,15 @@ class VatlieuController extends Controller
      */
     public function xac_nhan_xoa($id)
     {
-        return view('danhmuc.vatlieu.xoa-vl',['id'=>$id]);
+        return view('danhmuc.banggia.xoa-bg',['id'=>$id]);
     }
     public function destroy($id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $vl->delete();
-        return redirect('/danh-muc')->with('statusVL','Xóa thành công.');
+        $bg = Banggia::find($id);
+        $bg->delete();
+        return redirect('danh-muc')->with('status','Đã Xóa loại mặt hàng thành công.');
+
+        
     }
 }

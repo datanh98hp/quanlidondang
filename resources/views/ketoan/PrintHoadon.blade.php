@@ -37,21 +37,36 @@
             </thead>
             <tbody>
 
-                @foreach ($list_dh as $item)
+              @foreach ($list_dh as $item)
+                
                 <tr>
                     <th scope="row">{{$item->id}}</th>
-                    <td>{{$item->TenMH}}</td>
+                    <td>{{$item->id_Banggia}}</td>
                     <td>{{$item->Soluong}}</td>
-                    <td>{{number_format($item->Don_gia)}} VND</td>
-                    <td>{{ number_format($item->Don_gia*$item->Soluong)}} VND</td>
-                  </tr>    
+                    <td>
+                      @foreach ($banggia as $it)
+                         @if ($it->id === $item->id_Banggia)
+                            {{number_format($it->Dongia)}} VND
+                         @endif 
+                      @endforeach 
+                    </td>
+                    <td>
+                      @foreach ($banggia as $it)
+                         @if ($it->id === $item->id_Banggia)
+                         {{ number_format($it->Dongia*$item->Soluong)}} 
+                         @endif 
+                      @endforeach
+                      
+                    </td>
+                  </tr>   
+                  
                 @endforeach
             </tbody>
         </table>
         
     </div>
       </div>
-      <h3 class="text-right" style="margin-right: 20px;font-weight: 1000"> Tổng :<span class="total_data" style="padding: 30px;font-weight: 600">{{ number_format($tongGia)}} VND</span></h3>
+      <h3 class="text-right" style="margin-right: 20px;font-weight: 1000"> Tổng :<span class="total_data" style="padding: 30px;font-weight: 600">{{ number_format($tonggia)}} VND</span></h3>
     </div>
     <h5 class=" mx-4 text-left my-4">Người lập đơn</h5>
     <div class="mx-5 center">

@@ -11,7 +11,7 @@
                 width: 50%;
             }
 </style>
-<div class="row">
+{{-- <div class="wrap"> --}}
   
   {{-- Modal thêm mới --}}
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -30,6 +30,40 @@
               <label for="recipient-name" class="col-form-label">Người lập đơn hàng:</label>
               <input type="text" class="form-control" id="recipient-name" name="" value="{{$username}}" disabled placeholder="Họ và tên">
             </div>
+            {{--  --}}
+            <div class="container">
+
+              <label for="recipient-name" class="col-form-label">*Thông tin Khách hàng:*</label>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">*Tên KH:*</label>
+                <select class="custom-select" id="kh_old"  name="id_Khachhang" id="">
+                  <option value="">...Khác...</option>
+                  @foreach ($kh as $item)
+                    <option value="{{$item->id}}">{{$item->Hoten}}</option>
+                  @endforeach
+                </select>
+              </div>
+              {{-- <label for="recipient-name" class="col-form-label">*KH mới:*</label>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Tên KH:*</label>
+                <input type="text" id="kh_new" class="form-control" id="recipient-name" name="Hoten" value="" placeholder="Thêm mới KH">
+                
+              </div> --}}
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">SDT:*</label>
+                <input type="text" class="form-control" id="recipient-name" name="SDT" value=""  placeholder="SDT">
+              </div>  
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Email:</label>
+                <input type="text" class="form-control" id="recipient-name" name="Email" value=""  placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">C.ty:</label>
+                <input type="text" class="form-control" id="recipient-name" name="Cty" value="" placeholder="Cty">
+              </div>
+                          
+          </div>
+            {{--  --}}
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Tên Đơn hàng:</label>
               <input type="text" class="form-control" id="recipient-name" name="TenDH" value="" placeholder="Tên mô tả đơn hàng">
@@ -40,36 +74,27 @@
               <table class="table table-borderless">
                 <thead>
                   <tr>
-                    {{-- <th scope="col">#</th> --}}
-                    <th scope="" style="width:300px">Tên MH</th>
-                    <th scope="">Số lượng</th>
-                    <th scope="">Đơn giá</th>
-                    <th scope="">Đơn vị</th>
+                    <th scope="" style="width:500px">Mặt hàng</th>
+                    <th scope="" style="width:200px">Số lượng/ Số Diện tích</th>
                     <th scope=""><a href="javascript:;" class="btn btn-success addRow">+</a></th>
-
                   </tr>
                 </thead>
                 <tbody id="content">
                   <tr>
                     <td>
-                      <input type="text" class="form-control" id="TenMH" name="TenMH[]">
+          
+                        <select id="inputState" class="form-control" name="id_Banggia[]">
+                          <option selected>Chọn...</option>
+                          @foreach ($bg as $item)
+                            <option value="{{$item->id}}">{{$item->TenLoai}}</option>
+                          @endforeach
+                        </select>
+                      
                     </td>
                     <td>
-                      <input type="number" min="0" class="form-control" id="Soluong" name="Soluong[]">
+                      <input type="number" min="0" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" class="form-control" name="Soluong[]">
                     </td>
-                    <td>
-                      <input type="text" class="form-control" id="Don_gia" name="Don_gia[]">
-                    </td>
-                    <td>
-                      {{-- <input type="text" class="form-control" id="Donvi" name="Donvi[]"> --}}
-                      <select class="custom-select" name="Donvi[]">
-                        <option selected>Chọn...</option>
-                        <option value="Cái">Cái</option>
-                        <option value="Chiếc">Chiếc</option>
-                        <option value="M">M</option>
-                      </select>
-                    </td>
-                    <th scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></th>
+                    <td scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -85,7 +110,7 @@
               <input type="text" class="form-control" id="message-text" name="Coc_truoc">
           </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
               <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
           </form>
@@ -95,9 +120,9 @@
     </div>
   </div>
   {{-- end --}}
-  <div class="col-sm-12">
-    <div class="card border-danger" style="margin:0% 11%;">
-      <div class="card-body ">
+  {{-- <div class="container"> --}}
+    <div class="card border-danger" >
+      <div class="card-body mx-2 ">
         <h3 class="card-title text-center"> Danh sách đơn hàng</h3>
         @if (session('status'))
           <div class="alert alert-success" role="alert">
@@ -107,7 +132,7 @@
         <div>
           <button type="button" class="btn btn-primary text-center" data-toggle="modal" style="margin-bottom: 2%" data-target="#exampleModal" data-whatever="@fat">Thêm mới</button>
         </div>
-        <table class="table table-responsive" id="dataTable">
+        <table class="table " id="dataTable">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -159,31 +184,24 @@
         
       </div>
     </div>
-  </div>
-</div>
+  {{-- </div> --}}
+{{-- </div> --}}
 <script>
   $('thead').on('click','.addRow',function(){
-    var tr =  '<tr>'+
+    var tr = '<tr>'+
                     '<td>'+
-                      '<input type="text" class="form-control" id="TenMH" name="TenMH[]"'+
+                        '<select id="inputState" class="form-control" name="id_Banggia[]">'+
+                          '<option selected>Chọn...</option>'+
+                         '@foreach ($bg as $item)'+
+                            '<option value="{{$item->id}}">{{$item->TenLoai}}</option>'+
+                          '@endforeach'+
+                        '</select>'+
                     '</td>'+
                     '<td>'+
-                      '<input type="number" min="0" class="form-control" id="Soluong" name="Soluong[]">'+
+                      '<input type="number" min="0" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" class="form-control" name="Soluong[]">'+
                     '</td>'+
-                    '<td>'+
-                      '<input type="text" class="form-control" id="Don_gia" name="Don_gia[]">'+
-                    '</td>'+
-                    '<td>'+
-                     
-                      '<select class="custom-select" name="Donvi[]">'+
-                        '<option selected>Chọn...</option>'+
-                        '<option value="Cái">Cái</option>'+
-                        '<option value="Chiếc">Chiếc</option>'+
-                        '<option value="M">M</option>'+
-                      '</select>'+
-                    '</td>'+
-                    '<th scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></th>'+
-                  '</tr>';
+                    '<td scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></td>'+
+              '</tr>';
     $('#content').append(tr);
   });
   $('tbody').on('click','.deleteRow',function(){
@@ -214,5 +232,7 @@ $('#dataTable tbody').on('click', 'tr', function () {
 } );
 } );
 </script>
-
+<script>
+  
+</script>
 </x-app-layout>

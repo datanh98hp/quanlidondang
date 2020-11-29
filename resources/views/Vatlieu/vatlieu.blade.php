@@ -9,6 +9,7 @@
             <th scope="col">Tên VL</th>
             <th scope="col">SL</th>
             <th scope="col">Đơn vị</th>
+            <th scope="col">NCC</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,13 @@
               <td>{{$item->TenVL}}</td>
               <td>{{$item->Soluong_ton}}</td>
               <td>{{$item->Donvi_tinh}}</td>
+              <td>
+                @foreach ($ncc as $nc)
+                    @if ($nc->id === $item->id_ncc)
+                        {{$nc->TenNCC}}
+                    @endif
+                @endforeach
+              </td>
             </tr>  
           @endforeach
           
@@ -137,13 +145,13 @@
                   <input type="text" class="form-control" id="id_user" name="id_user" disabled value="{{$username}}" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Danh sách vật liệu nhập <span style="margin-left: 300px; ">
+                  {{-- <label for="recipient-name" class="col-form-label">Danh sách vật liệu nhập <span style="margin-left: 300px; ">
                     <button type="button" id="check_input" class="btn" style="color:#000">Thay đổi phương thức nhập <i class="fas fa-exchange-alt" style="color: blue"></i> </button></span>
-                  </label>
+                  </label> --}}
 
                   {{-- <div class="input-group">                   
                   </div> --}}
-                  <table class="table table-borderless" style="padding: 10px">
+                  <table class="table table-borderless center" >
                     <thead id="thead_Nhap">
                       <tr>
                         {{-- <th scope="col">#</th> --}}
@@ -174,7 +182,13 @@
                           <input type="text" class="form-control" id="Don_gia" name="Don_gia[]">
                         </td>
                         <td class="show_when_create">
-                          <input type="text" class="form-control" id="NSX" name="NSX[]">
+                          {{-- <input type="text" class="form-control" id="NSX" name="id_ncc[]"> --}}
+                          <select class="custom-select" name="id_ncc[]">
+                            <option selected value="">...Chọn...</option>
+                            @foreach ($ncc as $item)
+                              <option value="{{ $item->id}}">{{ $item->TenNCC}}</option>
+                            @endforeach
+                          </select>
                         </td> 
                         <td class="show_when_create">
                           {{-- <input type="text" class="form-control" id="Donvi" name="Donvi[]"> --}}
@@ -182,7 +196,9 @@
                             <option selected>Chọn...</option>
                             <option value="Cái">Cái</option>
                             <option value="Cuộn">Cuộn</option>
-                            <option value="M">M</option>
+                            <option value="Tấm">Tấm</option>
+                            <option value="Mét vuông">Mét vuông</option>
+                            <option value="Khác">Khác</option>
                           </select>
                         </td>
                         
@@ -303,26 +319,30 @@
         $('#thead_Nhap').on('click','.addRow',function(){
           var tr =  '<tr>'+
                           '<td >'+
-                            '<input type="text" class="form-control" id="TenMH" name="TenMH[]"'+
+                            '<select id="TenVL" class="custom-select @error('title') is-invalid @enderror" name="TenVL[]" required>'+
+                            '<option selected>Chọn...</option>'+
+                            '@foreach ($ds_Vatlieu as $item)'+
+                              '<option value="{{$item->id}}">{{$item->TenVL}}</option>'+
+                            '@endforeach'+
+                          '</select>'+
                           '</td>'+
                           '<td>'+
                             '<input type="number" min="0" class="form-control" id="Soluong" name="Soluong[]">'+
                           '</td>'+
-                          '<td class="show_when_create">'+
-                            '<input type="text" class="form-control" id="Don_gia" name="Don_gia[]">'+
-                          '</td>'+
-                          '<td class="show_when_create">'+
-                          '<input type="text" class="form-control" id="Noi_cap" name="NSX[]">'+
-                          '</td>'+
-                          '<td class="show_when_create">'+
-                          
-                            '<select class="custom-select" name="Donvi[]">'+
-                              '<option value="" selected>...Chọn...</option>'+
-                              '<option value="Cái">Cái</option>'+
-                              '<option value="Chiếc">Chiếc</option>'+
-                              '<option value="M">M</option>'+
-                            '</select>'+
-                          '</td>'+
+                          // '<td class="show_when_create">'+
+                          //   '<input type="text" class="form-control" id="Don_gia" name="Don_gia[]">'+
+                          // '</td>'+
+                          // '<td class="show_when_create">'+
+                          // '<input type="text" class="form-control" id="Noi_cap" name="NSX[]">'+
+                          // '</td>'+
+                          // '<td class="show_when_create">'+
+                          //   '<select class="custom-select" name="Donvi[]">'+
+                          //     '<option value="" selected>...Chọn...</option>'+
+                          //     '<option value="Cái">Cái</option>'+
+                          //     '<option value="Chiếc">Chiếc</option>'+
+                          //     '<option value="M">M</option>'+
+                          //   '</select>'+
+                          // '</td>'+
                           '<th scope="col"><a href="javascript:;" class="btn btn-danger deleteRow">-</a></th>'+
                         '</tr>';
           $('#content_Nhap').append(tr);
@@ -341,7 +361,7 @@
                               '<option value="{{$item->id}}">{{$item->TenVL}}</option>'+
                             '@endforeach'+
                           '</select>'+
-                          '</td>'+
+                          // '</td>'+
                           '<td>'+
                             '<input type="number" min="0" class="form-control" id="Soluong" name="Soluong_xuat[]">'+
                           '</td>'+
@@ -391,7 +411,7 @@
                           '<option value="{{$item->TenVL}}">{{$item->TenVL}}</option>'+
                             '@endforeach'+
                           '</select>');
-        var timeClick = 0;
+        var timeClick = 1;
         $('.show_when_create').hide();
 
         $('#check_input').click(function(){
@@ -416,7 +436,6 @@
                           '</select>');
            
           }
-
           console.log(timeClick);
         });
       

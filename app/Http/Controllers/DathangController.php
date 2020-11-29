@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Donhang;
 use App\Models\Mathang;
+use App\Models\Banggia;
+use App\Models\Khachhang;
 use Illuminate\Support\Facades\Auth;
 
 class DathangController extends Controller
@@ -19,8 +21,10 @@ class DathangController extends Controller
     {
         //
        $donhang = Donhang::all();
+       $bg = Banggia::all();
+       $kh = Khachhang::all();
        $username = Auth::user()->name;
-        return view('ketoan.listBill',['donhang'=>$donhang,'username'=>$username]);
+        return view('ketoan.listBill',['donhang'=>$donhang,'username'=>$username,'bg'=>$bg,'kh'=>$kh]);
     }
 
     /**
@@ -41,9 +45,20 @@ class DathangController extends Controller
      */
     public function store(Request $request)
     {
+        // Thêm tt Khách hàng
+
+        // $kh = new Khachhang;
+
+        // $kh->updateOrCreate([
+        //     'Hoten'=>$request->input('Hoten'),
+        //     'SDT'=>$request->input('SDT'),
+        //     'Email'=>$request->input('Email'),
+        //     'Cty'=>$request->input('Cty'),
+        // ]);
         //
         $donhang = new Donhang;
         $donhang->id_user = Auth::user()->id;
+        $donhang->id_Khachhang = $request->input('id_Khachhang');
         $donhang->Tg_giao = $request->input('Tg_giao');
         $donhang->TenDH = $request->input('TenDH');
         $donhang->Coc_truoc = $request->input('Coc_truoc');
@@ -51,23 +66,30 @@ class DathangController extends Controller
         $donhang->Tong_gia = 0;
         $donhang->save();
 ///
-        // $data = [];
+        $banggia = Banggia::all();
+
         $giaDon= 0;
-        foreach ($request->input('TenMH') as $key=>$id) {
+        $dongia=0;
+        foreach ($request->input('id_Banggia') as $key=>$id) {
          
             $mathang = new Mathang;
             $mathang->id_Donhang = $donhang->id;
-            $mathang->TenMH = $request->TenMH[$key];
+            $mathang->id_Banggia = $request->id_Banggia[$key];
             $mathang->Soluong = $request->Soluong[$key];
-            $mathang->Donvi = $request->Donvi[$key];
-            $mathang->Don_gia = $request->Don_gia[$key];
+           
             $mathang->save();
+  
+            foreach ($banggia as $bg) {
+                if ($bg->id==$mathang->id_Banggia) {
+                    $dongia=$bg->Dongia;
+                }
+            }
 
-            $giaDon += ($mathang->Soluong * $mathang->Don_gia);
+            $giaDon += $mathang->Soluong * $dongia;
 
         }
         $donhang->Tong_gia = $giaDon - $donhang->Coc_truoc;
-        $donhang->save(); 
+        $donhang->update(); 
         return redirect('/dathang')->with('status','Thêm thành công.');
     }
 
@@ -95,7 +117,8 @@ class DathangController extends Controller
         $donhang = Donhang::find($id);
         $username = Auth::user()->name;
         $mathang = Mathang::where('id_Donhang',$id)->get();
-        return view('ketoan.EditBill',['username'=>$username,'donhang'=>$donhang,'mathang'=>$mathang]);
+        $bg = Banggia::all();
+        return view('ketoan.EditBill',['username'=>$username,'donhang'=>$donhang,'mathang'=>$mathang,'bg'=>$bg]);
     }
 
     /**
@@ -107,8 +130,8 @@ class DathangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $TongGiaMH= 0;
-        try {
+       
+        // try {
                     //
         $donhang = Donhang::find($id);
         $donhang->id_user = Auth::user()->id;
@@ -116,39 +139,57 @@ class DathangController extends Controller
         $donhang->Coc_truoc = $request->input('Coc_truoc');
         $donhang->Trang_thai = 'Đang xử lí';
         $donhang->Tong_gia = 0;
-       $donhang->update();
+        $donhang->update();
   
         Mathang::where('id_Donhang',$id)->delete(); // xóa cái cũ
-
-        
-        foreach ($request->input('TenMH') as $key=>$key) {
+        $giaDonHang= 0;
+        $dongia=0;
+        $banggia = Banggia::all();
+        foreach ($request->input('id_Banggia') as $key=>$key) {
          // cập nhật lại list mat hàng
                 $mh = new Mathang;
                 
                 $mh->updateOrCreate([
                     'id_Donhang'=>$id,
-                    'TenMH'=>$request->TenMH[$key],
+                    'id_Banggia'=>$request->id_Banggia[$key],
                     'Soluong'=> $request->Soluong[$key],
-                    'Donvi'=>$request->Donvi[$key],
-                    'Don_gia' => $request->Don_gia[$key]
                     ]);
                    
-           // }
+           // 
+            // foreach ($banggia as $bg) {
+            //     if ($bg->id == $mh->id_Banggia) {
+            //         $dongia = $bg->Dongia;
+            //     }
+            // }
+
+            // $giaDonHang += $mh->Soluong * $dongia;
+
         }
-                    
-        $mh = Mathang::where('id_Donhang',$id)->get();
-        foreach ($mh as $key => $value) {
-            $TongGiaMH +=($mh[$key]->Soluong * $mh[$key]->Don_gia);
+
+        $mathang = Mathang::where('id_Donhang',$id)->get();
+
+        for ($i=0; $i < $mathang->count(); $i++) { 
+            # code...
+            for ($j=0; $j < $banggia->count(); $j++) { 
+                # code...
+                if ($mathang[$i]->id_Banggia==$banggia[$j]->id) {
+                    # code...
+                    $dongia=$banggia[$j]->Dongia;
+                    //tinh $
+
+                }
+            }
+            $giaDonHang+=($mathang[$i]->Soluong * $dongia);
         }
-        $donhang->Tong_gia = $TongGiaMH;
+      
+        $donhang->Tong_gia =  $giaDonHang;
         $donhang->update();
 
-       
         return redirect('/dathang')->with('status','Cập nhật thành công.');
-        } catch (\Throwable $th) {
-           return redirect('/dathang');
-        }
-    }
+    //     } catch (\Throwable $th) {
+    //        return redirect('/dathang');
+    //     }
+     }
 
     /**
      * Remove the specified resource from storage.
@@ -228,17 +269,29 @@ class DathangController extends Controller
         $list_mh = Mathang::where('id_Donhang',$id)->get();
 
         $tong_Gia = 0;
-
-        foreach ($list_mh as $key => $value) {
+        $banggia = Banggia::all();
+        $dg = 0;
+        
+        for ($i=0; $i < $list_mh->count(); $i++) { 
             # code...
-            $tong_Gia+=( $list_mh[$key]->Soluong*$list_mh[$key]->Don_gia);
+            for ($j=0; $j < $banggia->count(); $j++) { 
+                # code...
+                if ($list_mh[$i]->id_Banggia==$banggia[$j]->id) {
+                    # code...
+                    $dg=$banggia[$j]->Dongia;
+                    //tinh $
+
+                }
+            }
+            $tong_Gia+=($list_mh[$i]->Soluong * $dg);
         }
 
         return view('ketoan.PrintHoadon',
         [
             'dh'=>$donhang,
             'list_dh'=>$list_mh,
-            'tongGia'=>$tong_Gia
+            'banggia'=>$banggia,
+            'tonggia'=>$tong_Gia,
         ]
         );
     }

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Phieunhap;
-
+use App\Models\Nhacungcap;
 use App\Models\Phieuxuat;
 
 
@@ -27,12 +27,14 @@ class PhieuController extends Controller
         $phieuxuat = Phieuxuat::all()->except([1]);
         $ds_Donhang = Donhang::where('id_user',Auth::user()->id)->get();
         $ds_Vatlieu = Vatlieu::all();
+        $ncc = Nhacungcap::all();
         return view('Vatlieu.vatlieu',[
             'phieunhap'=>$phieunhap,
             'phieuxuat'=>$phieuxuat,
             'username'=>Auth::user()->name,
             'ds_Donhang'=>$ds_Donhang,
-            'ds_Vatlieu'=>$ds_Vatlieu
+            'ds_Vatlieu'=>$ds_Vatlieu,
+            'ncc'=>$ncc
             ]);
     }
 
@@ -75,7 +77,7 @@ class PhieuController extends Controller
 
                     $vatlieu->TenVL = $request->TenVL[$key];
                     $vatlieu->Soluong_ton +=  $request->Soluong_ton[$key];
-                    // $vatlieu->NSX = $request->NSX[$key];
+                    // $vatlieu->id_ncc = $request->id_ncc[$key];
                     // $vatlieu->Don_gia = $request->Don_gia[$key];
                     // $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
                     $vatlieu->id_phieunhap  = $phieunhap->id;
@@ -87,12 +89,12 @@ class PhieuController extends Controller
                     $vatlieu = new Vatlieu;
                     $vatlieu->TenVL = $request->TenVL[$key];
                     $vatlieu->Soluong_ton = $request->Soluong_ton[$key];
-                    $vatlieu->NSX = $request->NSX[$key];
+                    $vatlieu->id_ncc = $request->id_ncc[$key];
                     $vatlieu->Don_gia = $request->Don_gia[$key];
                     $vatlieu->Donvi_tinh = $request->Donvi_tinh[$key];
                     $vatlieu->id_phieunhap  = $phieunhap->id;
                     $vatlieu->last_change = $request->Soluong_ton[$key];
-                    $vatlieu->id_phieuxuat  = 1;
+                    // $vatlieu->id_phieuxuat  = 1;
                     $vatlieu->save();
                 }
 

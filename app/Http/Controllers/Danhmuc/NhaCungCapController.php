@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Vatlieu;
+namespace App\Http\Controllers\Danhmuc;
+
+use App\Http\Controllers\Controller;
 use App\Models\Nhacungcap;
 use Illuminate\Http\Request;
 
-class VatlieuController extends Controller
+class NhaCungCapController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,6 @@ class VatlieuController extends Controller
     public function index()
     {
         //
-        return view('Vatlieu.vatlieu');
     }
 
     /**
@@ -37,15 +37,13 @@ class VatlieuController extends Controller
     public function store(Request $request)
     {
         //
-        $vl = new Vatlieu;
-        $vl->TenVL = $request->input('TenVL');
-        $vl->Soluong_ton = $request->input('Soluong_ton');
-        $vl->Don_gia = $request->input('Don_gia');
-        $vl->Donvi_tinh = $request->input('Donvi_tinh');
-        $vl->id_ncc = $request->input('id_ncc');
-        
-        $vl->save();
-         return redirect('/danh-muc')->with('status','Thêm vật liệu mới thành công.');
+        $ncc = new Nhacungcap;
+        $ncc->TenNCC = $request->input('TenNCC');
+        $ncc->DiaChi = $request->input('DiaChi');
+        $ncc->Hotline = $request->input('Hotline');
+        $ncc->Daidien = $request->input('Daidien');
+        $ncc->save();
+        return redirect('/danh-muc')->with('status','Thêm nhà cung cấp thành công.');
     }
 
     /**
@@ -68,9 +66,9 @@ class VatlieuController extends Controller
     public function edit($id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $ncc = Nhacungcap::all();
-        return view('danhmuc.vatlieu.Edit-vl',['vl'=>$vl,'ncc'=>$ncc]);
+        $ncc = Nhacungcap::find($id);
+
+        return view('danhmuc.ncc.Edit-ncc',['ncc'=>$ncc]);
     }
 
     /**
@@ -83,16 +81,15 @@ class VatlieuController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $vl->TenVL = $request->input('TenVL');
-        $vl->Soluong_ton = $request->input('Soluong_ton');
-        $vl->Don_gia = $request->input('Don_gia');
-        $vl->Donvi_tinh = $request->input('Donvi_tinh');
-        $vl->id_ncc = $request->input('id_ncc');
-        
-        $vl->save();
+        $ncc = Nhacungcap::find($id);
+        $ncc->TenNCC = $request->input('TenNCC');
+        $ncc->DiaChi = $request->input('DiaChi');
+        $ncc->Hotline = $request->input('Hotline');
+        $ncc->Daidien = $request->input('Daidien');
+        $ncc->update();
 
-        return redirect('/danh-muc')->with('status','Cập nhật thông tin vật liệu thành công.');
+        return redirect('/danh-muc')->with('status','Cập nhật nhà cung cấp thành công.');
+
     }
 
     /**
@@ -103,13 +100,13 @@ class VatlieuController extends Controller
      */
     public function xac_nhan_xoa($id)
     {
-        return view('danhmuc.vatlieu.xoa-vl',['id'=>$id]);
+        return view('danhmuc.ncc.xoa-ncc',['id'=>$id]);
     }
     public function destroy($id)
     {
         //
-        $vl = Vatlieu::find($id);
-        $vl->delete();
-        return redirect('/danh-muc')->with('statusVL','Xóa thành công.');
+        $ncc = Nhacungcap::find($id);
+        $ncc->delete();
+        return redirect('/danh-muc')->with('status','Xóa thành công nhà cung cấp...');
     }
 }

@@ -25,7 +25,7 @@ class Donhang extends Model
     }
     
 //
-    public function Mathangs()///1-N
+    public function Mathang()///1-N
     {
         return $this->hasMany('App\Models\Mathang');
     }

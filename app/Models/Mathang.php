@@ -13,15 +13,17 @@ class Mathang extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id_Donhang',
-        'TenMH',
+        'id_Banggia',
         'Soluong',
-        'Donvi',
-        'Don_gia'
+        'Desc'
     ];
 
     public function Donhang()///1-n
     {
         return $this->belongTo('App\Models\Donhang');
     }
-
+    public function Banggia()///1-n
+    {
+        return $this->belongTo('App\Models\Banggia');
+    }
 }

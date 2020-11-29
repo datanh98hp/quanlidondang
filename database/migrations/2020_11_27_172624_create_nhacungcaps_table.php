@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMathangTable extends Migration
+class CreateNhacungcapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateMathangTable extends Migration
      */
     public function up()
     {
-        Schema::create('mathang', function (Blueprint $table) {
+        Schema::create('nhacungcaps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_Donhang');$table->foreign('id_Donhang')->references('id')->on('donhang');
-            $table->string('TenMH');
-            $table->integer('Soluong');
-            $table->string('Donvi');
-            $table->string('Don_gia');
+            $table->string('TenNCC');
+            $table->string('DiaChi');
+            $table->string('Hotline');
+            $table->string('Daidien');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateMathangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mathang');
+        Schema::dropIfExists('nhacungcaps');
     }
 }

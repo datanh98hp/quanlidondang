@@ -23,6 +23,7 @@ class CreateVatlieuTable extends Migration
 
             $table->foreignId('id_phieunhap');$table->foreign('id_phieunhap')->references('id')->on('phieunhap');
             $table->foreignId('id_phieuxuat');$table->foreign('id_phieuxuat')->references('id')->on('phieuxuat');
+            $table->foreignId('id_ncc');$table->foreign('id_ncc')->references('id')->on('nhacungcaps');
             
             $table->timestamps();
         });
