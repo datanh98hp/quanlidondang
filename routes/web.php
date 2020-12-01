@@ -135,7 +135,20 @@ Route::get('/thongbao',function ()
     Route::get('/del-vl/{id}',[VatlieuController::class,'xac_nhan_xoa'])->middleware(['auth:sanctum','checkType']);
     Route::delete('/del-vl/{id}',[VatlieuController::class,'destroy'])->middleware(['auth:sanctum','checkType']);
 
+//////// BÁO CÁO
+//DH
+Route::get('/bao-cao-dh',[DasboardController::class,'baocao_donhang'])->middleware(['auth:sanctum','checkType']);
+Route::post('/create/bc-dh',[DasboardController::class,'get_baocao_donhang'])->middleware(['auth:sanctum','checkType']);
+//Tonkho (Vat lieu + mathang (có mã đơn hàng chưa hoàn thành))
+Route::get('/bao-cao-tonkho-mh',[DasboardController::class,'get_baocao_mathang_tonko'])->middleware(['auth:sanctum','checkType']);
+// Route::post('/create/bc-dh',[DasboardController::class,'get_baocao_tonko'])->middleware(['auth:sanctum','checkType']);
 
+// bao cao thu chi
+
+Route::post('/create/bc-thuchi',[ThuchiController::class,'print_bc_thuchi'])->middleware(['auth:sanctum','checkType']);
+
+// bao ca-  ds nhan vien(bang luong)
+Route::any('/bao-cao-ds-nhanvien',[NhanvienController::class,'print_baocao_nhanvien'])->middleware(['auth:sanctum','checkType']);
 
 });
 

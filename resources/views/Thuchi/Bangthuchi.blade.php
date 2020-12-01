@@ -50,15 +50,54 @@
     </div>
   </div>
 </div>
-<div class="ml-5">
+<div class=" ml-5">
   <button type="button" class="btn btn-primary mx-auto" data-toggle="modal" data-target="#staticBackdrop">
     Thêm
   </button>
+ 
 </div>
+
   </div>
   
+  <div class="justify-content-sm-end">
+    
+    @if (session('status'))
+    <div class="alert alert-danger">
+        {{ session('statusBC') }}
+    </div>
+    @endif
+    <div class="center" id="formTgBC">
+      <form action="/create/bc-thuchi" method="POST">
+        @csrf
+
+        <div class="form-row align-items-baseline mx-auto">
+          <div class="col-sm-5 my-1">
+            
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Từ ngày</div>
+              </div>
+              <input type="date" class="form-control" name="startdate" id="" placeholder="Username">
+            </div>
+          </div>
+          <div class="col-sm-5 my-auto">
+          
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Đến ngày</div>
+              </div>
+              <input type="date" class="form-control" id="" name="enddate" placeholder="Username">
+            </div>
+          </div>
+          <div class="col-auto mx-auto">
+            <button type="submit" class="btn btn-success">Xuất báo cáo</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
     <h2 class="text-center" style="color: blue">Bảng thu chi</h2>
-      <h6 class="text-center">( {{ date("F j, Y")  }} )</h6>
+      <h6  class="text-center">( {{ date("F j, Y")  }} )</h6>
         <!-- Button trigger modal -->
     
     <div class="row">

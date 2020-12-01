@@ -104,9 +104,47 @@
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
            <span>Danh sách nhân viên</span>
+           
         </div>
-
+        @if (session('statusBC'))
+        <div class="alert alert-danger">
+            {{ session('statusBC') }}
+        </div>
+        @endif
         <div class="card-body">
+          <div class=" d-flex justify-content-end">
+             <div class="justify-content-sm-end">
+            <div class="left" id="formTgBC">
+                <form action="/bao-cao-ds-nhanvien" method="POST">
+                  @csrf
+                  <div class="form-row align-items-baseline mx-auto">
+                    <div class="col-sm-4 my-1">
+                      
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">Từ ngày</div>
+                        </div>
+                        <input type="date" class="form-control" name="startdate" id="" placeholder="Username">
+                      </div>
+                    </div>
+                    <div class="col-sm-4 my-auto">
+                    
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">Đến ngày</div>
+                        </div>
+                        <input type="date" class="form-control" id="" name="enddate" placeholder="Username">
+                      </div>
+                    </div>
+                    <div class="col-sm-3 mx-auto">
+                      <button type="submit" class="btn btn-success">Xuất bảng lương</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+            {{-- <a class="btn bg-light" href="/bao-cao-ds-nhanvien">Xuất danh sách nhân viên - bảng lương</a> --}}
+         </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Thêm mới</button>
             @if (session('status'))
                   <div class="alert alert-success" role="alert">
@@ -119,7 +157,7 @@
                 <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>$ID</th>
+                            <th>#</th>
                             <th>Họ Tên</th>
                             <th>SDT</th>
                             <th>Ngày vào làm</th>

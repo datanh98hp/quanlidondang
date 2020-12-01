@@ -116,4 +116,30 @@ class ThuchiController extends Controller
 
         return redirect('thuchi')->with('status','Xóa thành công...');
     }
+    public function print_bc_thuchi(Request $request){
+        
+        $start = $request->input('startdate');
+        $end = $request->input('enddate');
+
+        // $users = User::all();
+        $thuchi = Thuchi::whereDate('created_at','>=',$start)->whereDate('created_at','<=',$end)->orderBy('id')->get();
+
+        $Conlai = 0; $Tongthu=0; $Tongchi= 0;
+
+        foreach ($thuchi as $key => $value) {
+            $Conlai+=( $thuchi[$key]->SoTen_Thu - $thuchi[$key]->SoTen_Chi);
+            $Tongthu += $thuchi[$key]->SoTen_Thu;
+            $Tongchi += $thuchi[$key]->SoTen_Chi;
+        }
+
+
+        return view('Baocao.bc-Thuchi.print-BaocaoThuchi',[
+            'thuchi'=>$thuchi,
+            'Conlai'=>$Conlai,
+            'Tongthu'=>$Tongthu,
+            'Tongchi'=>$Tongchi,
+            'start'=>$start,
+            'end'=>$end
+        ]);
+    }
 }

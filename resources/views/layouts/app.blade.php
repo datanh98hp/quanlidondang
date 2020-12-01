@@ -162,24 +162,27 @@
                                     Bảng lương
                                 </a> --}}
                             @endif
-                            {{-- @if (Auth::user()->type==1) --}}
+                            @if (Auth::user()->type<=2)
                                
                             <div class="sb-sidenav-menu-heading">Báo cáo</div>
-                            <a class="nav-link collapsed" href="/dathang" data-toggle="collapse" data-target="#collapseLayoutsBc" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a href="/bao-cao" class="nav-link collapsed" href="/dathang" data-toggle="collapse" data-target="#collapseLayoutsBc" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Báo cáo thống kê
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayoutsBc" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Báo cáo tồn kho</a>
-                                    <a class="nav-link" href="#">Báo cáo thu chi</a>
-                                    <a class="nav-link" href="#">Báo công nợ của KH</a>
+                                    <a class="nav-link" href="/bao-cao-dh">Báo cáo doanh thu đơn hàng</a>
+                                    {{--  --}}
+                                    <a class="nav-link" href="/bao-cao-tonkho-mh">Báo cáo mặt hàng tồn kho</a>
+                                    <a class="nav-link" href="/bao-cao-tonkho-vl">Báo cáo Vật liệt tồn</a>
+                                    {{-- <a class="nav-link" href="#">Báo cáo thu chi</a>
+                                    <a class="nav-link" href="#">Báo công nợ của KH</a> --}}
                  
                                 </nav>
                                 
                             </div>
-                            {{-- @endif --}}
+                            @endif
                             
                         </div>
                     </div>

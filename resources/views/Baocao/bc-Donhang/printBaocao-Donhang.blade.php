@@ -4,7 +4,7 @@
 <div>
     <div class="card text-center" style="width: 100%;margin:0% ">
       <div class="card-body">
-        <h5 class="card-title">Thời gian :{{now()}} </h5>
+      <h5 class="card-title">Thời gian : {{now()}}</h5>
         <!-- When there is no desire, all things are at peace. - Laozi -->
       <div class="row " style="text-align: center;justify-content: center">
           <div class="" style="display: flex">
@@ -14,7 +14,7 @@
                 <h2 class="text-center" style="font-family: 'Lexend Peta', sans-serif;color: red">TRUNG TÂM QUẢNG CÁO TRẺ</h2>
                 <h1 class="text-center" style="font-family: 'Bungee Inline', cursive;color: red">Thiện Phúc</h1>
                 <span style="color: red">DC: Số 73 Trần Tất Văn - TT. An Lão - Hải Phòng * SDT: 0965 054 109 - 0867 10 03 89 </span>
-                <h3 class="center" style=" color: red;padding:20px;font-weight: 800" >ĐƠN ĐẶT HÀNG</h3>
+            <h3 class="center" style=" color:black;padding:20px;font-weight: 600;text-transform: uppercase" >Báo cáo doanh thu bán hàng từ {{$start}} đến {{$end}}</h3>
             </div>
           </div>
         </div>
@@ -22,45 +22,42 @@
         IN OFFSET - CÂT CHỮ VI TÍNH - CẤT CHỮ MICA NỔI - LẮP ĐÈN NEON SIGN - IN THIỆP CƯỚI - GIẤY KHEN - GIẤY MỜI - IN ẢNH ...
     </h6>
     <hr color="lightred">
-    <div class="collunm">
-        <h5>Người đặt hàng:<p class="name_oder"></p></h5>
-        <h5>Địa chỉ: <p class="address_oder"></p></h5>
-        <table class="table table-borderless" id="table-bill" style="width:100%;padding:2% 0% 0% 0%">
-            <thead class="thead-light">
+    <div class="collunm mx-auto my-4">
+        {{-- <h5>Người lập :<p class="name_oder">{{Auth::user()->name}}</p></h5> --}}
+        <h6 style="font-style: oblique">Thời gian : <span class="address_oder">{{now()}}</span></h6>
+        <table class="table table-borderless" id="table-bill" style="width:100%;padding:10% 0% 0% 0%">
+            <thead class="thead-dark table-striped">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên hàng</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Đơn giá</th>
-                <th scope="col">Thành tiền</th>
+                <th scope="col">Tên Đơn hàng</th>
+                <th scope="col">Người tạo đơn</th>
+                <th scope="col">Thời gian tạo</th>
+                <th scope="col">Giá trị đơn hàng</th>
+                <th scope="col">Trạng thái</th>
               </tr>
             </thead>
             <tbody>
 
-              @foreach ($list_dh as $item)
-                
-                <tr>
-                    <th scope="row">{{$item->id}}</th>
-                    <td>{{$item->id_Banggia}}</td>
-                    <td>{{$item->Soluong}}</td>
-                    <td>
-                      @foreach ($banggia as $it)
-                         @if ($it->id === $item->id_Banggia)
-                            {{number_format($it->Dongia)}} VND
-                         @endif 
-                      @endforeach 
-                    </td>
-                    <td>
-                      @foreach ($banggia as $it)
-                         @if ($it->id === $item->id_Banggia)
-                         {{ number_format($it->Dongia*$item->Soluong)}} 
-                         @endif 
-                      @endforeach
+              @foreach ($dh as $item)
+                    
+                    <tr>
+                        <th scope="row">
+                          {{$item->id}}
+                        </th>
+                        <td>{{$item->TenDH}}</td>
+                        <td>
+                          @foreach ($users as $it)
+                             @if ($it->id === $item->id_user)
+                                {{$it->name}}
+                             @endif 
+                          @endforeach 
+                        </td>
+                        <td>{{$item->created_at}}</td>
+                        <td>{{$item->Tong_gia}}</td>
+                        <td>{{$item->Trang_thai}}</td>
+                      </tr> 
                       
-                    </td>
-                  </tr>   
-                  
-                @endforeach
+              @endforeach
             </tbody>
         </table>
         

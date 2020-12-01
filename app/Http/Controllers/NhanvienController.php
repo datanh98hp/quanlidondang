@@ -110,4 +110,23 @@ class NhanvienController extends Controller
             return redirect('nhanvien')->with('status','Không thể xóa');
         }
     }
+    public function print_baocao_nhanvien(Request $request){
+
+        $start = $request->input('startdate');
+        $end = $request->input('enddate');
+
+        if ($start==null||$end==null) {
+            # code...
+            return redirect('/nhanvien')->with('statusBC','Vui lòng nhập đầy đủ thông tin rồi xuất báo cáo.');
+        }
+       
+        $nhanvien = Nhanvien::whereDate('created_at','>=',$start)->whereDate('created_at','<=',$end)->orderBy('id')->get();
+        if ($nhanvien->count()<1) {
+            # code...
+            return redirect('/nhanvien')->with('statusBC','Không có đối tượng nào trong thời gian này. Vui lòng nhập khoảng thời gian khác.');
+        }else{
+            return view('Nhanvien.print-ds-bangluong',['nhanvien'=>$nhanvien,'start'=>$start,'end'=>$end]);
+        }
+
+    }
 }
