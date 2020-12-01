@@ -6,8 +6,8 @@ Quan li don hang - do an tot nghiep
 - Instagram : https://www.instagram.com/dat_anh_IT/
 
 # database : 
-   link:  https://1drv.ms/u/s!AtjSDoRwpzkxleAl7l_SquTAo0VHhQ?e=UuEBwu
-# Cài đặt local
+   file *.sql in source
+   
     composer install
     npm install & npm run dev
     
