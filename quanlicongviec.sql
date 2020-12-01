@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 29, 2020 lúc 07:00 PM
+-- Thời gian đã tạo: Th12 01, 2020 lúc 07:04 PM
 -- Phiên bản máy phục vụ: 10.4.13-MariaDB
 -- Phiên bản PHP: 7.4.8
 
@@ -68,8 +68,8 @@ CREATE TABLE `donhang` (
 --
 
 INSERT INTO `donhang` (`id`, `TenDH`, `id_user`, `id_Khachhang`, `Tg_giao`, `Trang_thai`, `Tong_gia`, `Coc_truoc`, `created_at`, `updated_at`) VALUES
-(33, 'sads', 12, 5, '2020-11-29 22:44:00', 'Đang xử lí', 120000, 0, '2020-11-29 15:44:13', '2020-11-29 17:11:56'),
-(35, 'test2', 12, 1, '2020-11-29 23:43:00', 'Đang xử lí', 240000, 0, '2020-11-29 16:43:25', '2020-11-29 16:43:25');
+(33, 'sads', 12, 5, '2020-11-29 22:44:00', 'Đang xử lí', 280000, 0, '2020-11-29 15:44:13', '2020-12-01 07:42:51'),
+(35, 'test2', 12, 1, '2020-11-29 23:43:00', 'Đang xử lí', 320000, 0, '2020-11-29 16:43:25', '2020-12-01 07:43:10');
 
 -- --------------------------------------------------------
 
@@ -160,8 +160,10 @@ CREATE TABLE `mathang` (
 --
 
 INSERT INTO `mathang` (`id`, `id_Donhang`, `id_Banggia`, `Soluong`, `Desc`, `created_at`, `updated_at`) VALUES
-(66, 35, 5, '2', NULL, '2020-11-29 16:43:25', '2020-11-29 16:43:25'),
-(70, 33, 5, '1', NULL, '2020-11-29 17:11:56', '2020-11-29 17:11:56');
+(71, 33, 5, '1', NULL, '2020-12-01 07:42:51', '2020-12-01 07:42:51'),
+(72, 33, 3, '2', NULL, '2020-12-01 07:42:51', '2020-12-01 07:42:51'),
+(73, 35, 5, '2', NULL, '2020-12-01 07:43:10', '2020-12-01 07:43:10'),
+(74, 35, 3, '1', NULL, '2020-12-01 07:43:10', '2020-12-01 07:43:10');
 
 -- --------------------------------------------------------
 
@@ -218,7 +220,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (37, '2020_11_27_213943_create_donhang_table', 29),
 (38, '2020_11_27_214427_create_khachhang_table', 30),
 (39, '2020_11_27_214907_create_donhang_table', 31),
-(40, '2020_11_29_005124_create_mathang_table', 32);
+(40, '2020_11_29_005124_create_mathang_table', 32),
+(41, '2018_09_12_99999_create_backupverify_table', 33);
 
 -- --------------------------------------------------------
 
@@ -346,7 +349,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('WL72ZeJl5Yg5RHZqkB5vtvo1Rbmz5sAp6ubKNcDg', 12, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36 Edg/87.0.664.47', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVTNKME9yMXE5UWVBTUlmREhIcUlmeHNzVXZ5T0VjUmtMeks5OGJmMyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRVVGZMTmQ0T0VZV1M1a3RDdVV4cjB1Y05JVWRLL2hSSXlmMERCTmdYNzhabXVsd2FGNUNQTyI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkVVRmTE5kNE9FWVdTNWt0Q3VVeHIwdWNOSVVkSy9oUkl5ZjBEQk5nWDc4Wm11bHdhRjVDUE8iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM4OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvcHJpbnQtZG9uaGFuZy8zNSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1606670413);
+('hvOJ25A6azd6P49aA3noYVPYmYfc5qwkCWcYWnpF', 12, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36 Edg/87.0.664.47', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiOEFhUkVpVXFYT3VxMzRMUnRNR3NYOFh4d2ZWNEVjN1pvTlFybW9HMiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRVVGZMTmQ0T0VZV1M1a3RDdVV4cjB1Y05JVWRLL2hSSXlmMERCTmdYNzhabXVsd2FGNUNQTyI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkVVRmTE5kNE9FWVdTNWt0Q3VVeHIwdWNOSVVkSy9oUkl5ZjBEQk5nWDc4Wm11bHdhRjVDUE8iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbmhhbnZpZW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1606845252),
+('tnb0jCGCNOjKpYCoE6EVU5PQSYqQ0NApbo07NCV5', 12, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36 Edg/87.0.664.47', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoic3h6b0hOTkhwQTFuTGxWck51WUhValR6c003WERWRGdQdXVtNVhlZiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRVVGZMTmQ0T0VZV1M1a3RDdVV4cjB1Y05JVWRLL2hSSXlmMERCTmdYNzhabXVsd2FGNUNQTyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkVVRmTE5kNE9FWVdTNWt0Q3VVeHIwdWNOSVVkSy9oUkl5ZjBEQk5nWDc4Wm11bHdhRjVDUE8iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbmhhbnZpZW4iO319', 1606834050);
 
 -- --------------------------------------------------------
 
@@ -475,6 +479,17 @@ INSERT INTO `vatlieu` (`id`, `TenVL`, `Soluong_ton`, `last_change`, `Don_gia`, `
 (9, 'VL1', 5, '0', 50000, 'Cái', NULL, NULL, 2, '2020-11-28 13:17:43', '2020-11-28 15:36:44'),
 (11, 'VL2', 6, NULL, 50000, 'Cái', NULL, NULL, 3, '2020-11-28 15:48:55', '2020-11-28 15:56:42'),
 (12, 'VL3', 0, NULL, 50000, 'Chọn...', NULL, NULL, 3, '2020-11-29 02:31:07', '2020-11-29 02:31:07');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `verifybackup`
+--
+
+CREATE TABLE `verifybackup` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `verify_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -630,6 +645,12 @@ ALTER TABLE `vatlieu`
   ADD KEY `vatlieu_id_ncc_foreign` (`id_ncc`);
 
 --
+-- Chỉ mục cho bảng `verifybackup`
+--
+ALTER TABLE `verifybackup`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `_nhanvien`
 --
 ALTER TABLE `_nhanvien`
@@ -673,13 +694,13 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `mathang`
 --
 ALTER TABLE `mathang`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT cho bảng `nhacungcaps`
@@ -728,6 +749,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vatlieu`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT cho bảng `verifybackup`
+--
+ALTER TABLE `verifybackup`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `_nhanvien`
