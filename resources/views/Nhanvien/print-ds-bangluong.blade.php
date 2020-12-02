@@ -1,6 +1,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<style>
+  table, th, td {
+   border: 1px solid black !important;
+ }
+ </style>
 <div>
     <div class="card text-center" style="width: 100%;margin:0% ">
       <div class="card-body">
@@ -11,11 +16,11 @@
             <div class="justify-content-center" style="margin-left:0%;">
                 {{-- <img src="https://pngimage.net/wp-content/uploads/2018/06/webpack-logo-png.png" width="10%" alt="logo"> --}}
 
-                <h2 class="text-center" style="font-family: 'Lexend Peta', sans-serif;color: red">TRUNG TÂM QUẢNG CÁO TRẺ</h2>
-                <h1 class="text-center" style="font-family: 'Bungee Inline', cursive;color: red;">Thiện Phúc</h1>
-                <span style="color: red">DC: Số 73 Trần Tất Văn - TT. An Lão - Hải Phòng * SDT: 0965 054 109 - 0867 10 03 89 </span>
+                <h2 class="text-center">TRUNG TÂM QUẢNG CÁO TRẺ</h2>
+                <h1 class="text-center">Thiện Phúc</h1>
+                <span>DC: Số 73 Trần Tất Văn - TT. An Lão - Hải Phòng * SDT: 0965 054 109 - 0867 10 03 89 </span>
               <h3 class="text-center" style=" color:black;padding:20px;font-weight: 600;text-transform: uppercase" >Bảng lương nhân viên từ {{$start}} đến  {{$end}} </h3>
-              <h6 class="my-3" style="font-style: oblique">Thời gian : <span class="address_oder">{{ now() }}</span></h6>
+              {{-- <h6 class="my-3" style="font-style: oblique">Thời gian : <span class="address_oder">{{ now() }}</span></h6> --}}
             </div>
           </div>
         </div>
@@ -26,7 +31,7 @@
     <div class="collunm mx-auto my-4">
         {{-- <h5>Người lập :<p class="name_oder">{{Auth::user()->name}}</p></h5> --}}
         {{-- <h6 style="font-style: oblique">Thời gian : <span class="address_oder">{{now()}}</span></h6> --}}
-        <table class="table" id="table-bill" style="width:100%;padding:10% 0% 0% 0%">
+        <table class="text-center table" id="table-bill" style="width:100%;padding:10% 0% 0% 0%">
             <thead class="table display thead-dark table-striped">
               <tr>
                 <th scope="col">#</th>
@@ -70,9 +75,11 @@
 
       <h3 class="text-right" style="margin-right: 20px;font-weight: 1000"> Số dư  :<span class="total_data" style="padding: 30px;font-style: italic; font-weight: 600">{{ number_format($Tongthu - $Tongchi)}} VND</span></h3> --}}
     </div>
-    <h5 class=" mx-4 text-left my-4">Người lập đơn</h5>
+    <h5 class=" mx-3 text-left my-0">Người lập đơn</h5>
     <div class="mx-5 center">
-      <p>{{Auth::user()->name}}</p>
+      
+      <p><i>(Kí tên)</i></p>
+      <p class="my-5">{{Auth::user()->name}}</p>
     </div>
   </div>
   <script>

@@ -113,12 +113,12 @@
         @endif
         <div class="card-body">
           <div class=" d-flex justify-content-end">
-             <div class="justify-content-sm-end">
+          <div class="justify-content-sm-center">
             <div class="left" id="formTgBC">
                 <form action="/bao-cao-ds-nhanvien" method="POST">
                   @csrf
-                  <div class="form-row align-items-baseline mx-auto">
-                    <div class="col-sm-4 my-1">
+                  <div class="form-row align-items-baseline">
+                    <div class="col-sm-5 my-1">
                       
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -127,7 +127,7 @@
                         <input type="date" class="form-control" name="startdate" id="" placeholder="Username">
                       </div>
                     </div>
-                    <div class="col-sm-4 my-auto">
+                    <div class="col-sm-5 my-auto">
                     
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -136,8 +136,8 @@
                         <input type="date" class="form-control" id="" name="enddate" placeholder="Username">
                       </div>
                     </div>
-                    <div class="col-sm-3 mx-auto">
-                      <button type="submit" class="btn btn-success">Xuất bảng lương</button>
+                    <div class="col-sm-2">
+                      <button type="submit" class="btn btn-success">In Bảng lương</button>
                     </div>
                   </div>
                 </form>

@@ -95,7 +95,7 @@ return [
             /*
              * The filename prefix used for the backup zip file.
              */
-            'filename_prefix' => 'backup_file',
+            'filename_prefix' => '',
 
             /*
              * The disk names on which the backups will be stored.
@@ -136,11 +136,11 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => 'your@example.com',
+            'to' => ['datanh98hp@gmail.com','dat67653@st.vimaru.edu.vn','buithuthao2212@gmail.com'],
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'dat19898hp@gmail.com'),
-                'name' => env('MAIL_FROM_NAME', 'BACKUP_quanlicongviec'),
+                'address' => env('MAIL_FROM_ADDRESS', 'dat198hp@gmail.com'),
+                'name' => env('MAIL_FROM_NAME', 'Dat Do - Backup'),
             ],
         ],
 
@@ -166,7 +166,7 @@ return [
      */
     'monitor_backups' => [
         [
-            'name' => env('APP_NAME', 'laravel-backup'),
+            'name' => config('app.name').'_Backup',
             'disks' => ['local'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,

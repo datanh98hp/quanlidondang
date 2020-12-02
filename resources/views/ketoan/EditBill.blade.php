@@ -59,10 +59,14 @@
                     <td>
                       {{-- <input type="text" class="form-control"  id="TenMH" name="TenMH[]" value="{{$item->TenMH}}"> --}}
                         <select id="inputState" class="form-control" name="id_Banggia[]">
-                          <option selected>Chọn...</option>
-                          @foreach ($bg as $it)
-                            <option value="{{$it->id}}" selected>{{$it->TenLoai}}</option>
-                          @endforeach
+                          <option>Chọn...</option>
+                            @foreach ($bg as $it)
+                              <option value="{{$it->id}}"                   
+                                    @if ($it->id==$item->id_Banggia)
+                                      selected="true" 
+                                    @endif
+                                >{{$it->TenLoai}}</option>
+                            @endforeach
                         </select>
                     </td>
                     <td>
