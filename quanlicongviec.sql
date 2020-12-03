@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2020 lúc 07:04 PM
+-- Thời gian đã tạo: Th12 03, 2020 lúc 06:09 PM
 -- Phiên bản máy phục vụ: 10.4.13-MariaDB
 -- Phiên bản PHP: 7.4.8
 
@@ -68,8 +68,8 @@ CREATE TABLE `donhang` (
 --
 
 INSERT INTO `donhang` (`id`, `TenDH`, `id_user`, `id_Khachhang`, `Tg_giao`, `Trang_thai`, `Tong_gia`, `Coc_truoc`, `created_at`, `updated_at`) VALUES
-(33, 'sads', 12, 5, '2020-11-29 22:44:00', 'Đang xử lí', 280000, 0, '2020-11-29 15:44:13', '2020-12-01 07:42:51'),
-(35, 'test2', 12, 1, '2020-11-29 23:43:00', 'Đang xử lí', 320000, 0, '2020-11-29 16:43:25', '2020-12-01 07:43:10');
+(33, 'sads', 12, 5, '2020-11-29 22:44:00', 'Hoàn thành', 360000, 0, '2020-11-29 15:44:13', '2020-12-02 19:10:57'),
+(35, 'test2', 12, 1, '2020-11-29 23:43:00', 'Đang xử lí', 320000, 0, '2020-11-29 16:43:25', '2020-12-02 18:56:11');
 
 -- --------------------------------------------------------
 
@@ -160,10 +160,10 @@ CREATE TABLE `mathang` (
 --
 
 INSERT INTO `mathang` (`id`, `id_Donhang`, `id_Banggia`, `Soluong`, `Desc`, `created_at`, `updated_at`) VALUES
-(71, 33, 5, '1', NULL, '2020-12-01 07:42:51', '2020-12-01 07:42:51'),
-(72, 33, 3, '2', NULL, '2020-12-01 07:42:51', '2020-12-01 07:42:51'),
-(73, 35, 5, '2', NULL, '2020-12-01 07:43:10', '2020-12-01 07:43:10'),
-(74, 35, 3, '1', NULL, '2020-12-01 07:43:10', '2020-12-01 07:43:10');
+(79, 33, 5, '1', NULL, '2020-12-02 18:54:55', '2020-12-02 18:54:55'),
+(80, 33, 5, '2', NULL, '2020-12-02 18:54:55', '2020-12-02 18:54:55'),
+(86, 35, 5, '2', NULL, '2020-12-02 18:56:11', '2020-12-02 18:56:11'),
+(87, 35, 3, '1', NULL, '2020-12-02 18:56:11', '2020-12-02 18:56:11');
 
 -- --------------------------------------------------------
 
@@ -349,8 +349,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('hvOJ25A6azd6P49aA3noYVPYmYfc5qwkCWcYWnpF', 12, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36 Edg/87.0.664.47', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiOEFhUkVpVXFYT3VxMzRMUnRNR3NYOFh4d2ZWNEVjN1pvTlFybW9HMiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRVVGZMTmQ0T0VZV1M1a3RDdVV4cjB1Y05JVWRLL2hSSXlmMERCTmdYNzhabXVsd2FGNUNQTyI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkVVRmTE5kNE9FWVdTNWt0Q3VVeHIwdWNOSVVkSy9oUkl5ZjBEQk5nWDc4Wm11bHdhRjVDUE8iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbmhhbnZpZW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1606845252),
-('tnb0jCGCNOjKpYCoE6EVU5PQSYqQ0NApbo07NCV5', 12, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36 Edg/87.0.664.47', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoic3h6b0hOTkhwQTFuTGxWck51WUhValR6c003WERWRGdQdXVtNVhlZiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRVVGZMTmQ0T0VZV1M1a3RDdVV4cjB1Y05JVWRLL2hSSXlmMERCTmdYNzhabXVsd2FGNUNQTyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkVVRmTE5kNE9FWVdTNWt0Q3VVeHIwdWNOSVVkSy9oUkl5ZjBEQk5nWDc4Wm11bHdhRjVDUE8iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbmhhbnZpZW4iO319', 1606834050);
+('VdMfqbA1uNYzkXpTsLOQzVW27zgECDrATOgzszo1', 12, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36 Edg/87.0.664.52', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiWGRsNmJSdkVqRTZTS3JNNUhkRUZGb0dMUXNEUkNIOGo1VHBYNG9WWCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRVVGZMTmQ0T0VZV1M1a3RDdVV4cjB1Y05JVWRLL2hSSXlmMERCTmdYNzhabXVsd2FGNUNQTyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9iYWNrdXBzLWZpbGUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRVVGZMTmQ0T0VZV1M1a3RDdVV4cjB1Y05JVWRLL2hSSXlmMERCTmdYNzhabXVsd2FGNUNQTyI7fQ==', 1607015138);
 
 -- --------------------------------------------------------
 
@@ -419,7 +418,9 @@ CREATE TABLE `thuchi` (
 
 INSERT INTO `thuchi` (`id`, `NDCV`, `SoTen_Thu`, `SoTen_Chi`, `id_user`, `created_at`, `updated_at`) VALUES
 (26, 'Nhận tiền hang biển QC - DT Dat Anh', 1200000, NULL, 12, '2020-11-28 17:24:46', '2020-11-28 17:24:46'),
-(27, 'Nhập vỏ thiệp cưới 120 cái - BJ21L', NULL, 320000, 12, '2020-11-28 17:24:46', '2020-11-28 17:24:46');
+(27, 'Nhập vỏ thiệp cưới 120 cái - BJ21L', NULL, 320000, 12, '2020-11-28 17:24:46', '2020-11-28 17:24:46'),
+(28, 'Mua vật liệu :\r\n+ x2 alumech tráng đá\r\n+ 5 nẹp nhôm Vàng\r\n+4 Nẹp nhôm trắng\r\n+ 5 cây sắt', NULL, 1500000, 12, '2020-12-02 19:18:12', '2020-12-02 19:18:12'),
+(29, 'Thu tiền hàng \r\n+ 2 biển QC Đạt Anh', 2500000, NULL, 12, '2020-12-02 19:18:12', '2020-12-02 19:18:12');
 
 -- --------------------------------------------------------
 
@@ -694,7 +695,7 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `mathang`
 --
 ALTER TABLE `mathang`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -736,7 +737,7 @@ ALTER TABLE `thiepcuoi`
 -- AUTO_INCREMENT cho bảng `thuchi`
 --
 ALTER TABLE `thuchi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
