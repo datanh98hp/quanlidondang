@@ -10,10 +10,6 @@ class BackupController extends Controller
     public function backup_view(){
         $listFileBackUp = glob(storage_path('app\Laravel\*'));
         $arr_listFile = [];
-    //    for ($i=0; $i < count($listFileBackUp) ; $i++) { 
-    //        # code...
-    //        array_push($arr_listFile,$listFileBackUp[$i]);
-    //    }
        foreach($listFileBackUp as $filename){
         //Simply print them out onto the screen.
             array_push($arr_listFile, substr( $filename, 51 , 80));
@@ -27,6 +23,6 @@ class BackupController extends Controller
         // $schedule->exec('php artisan backup:run');
         $filename = glob(storage_path('app\Laravel\*'));
 
-        return Storage::download(storage_path('app\Laravel').$filename,'Backup','header');
+        return Storage::download(storage_path('app\Laravel').$filename);
     }
 }
