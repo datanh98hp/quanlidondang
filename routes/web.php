@@ -14,6 +14,8 @@ use App\Http\Controllers\Danhmuc\DanhmucController;
 use App\Http\Controllers\Danhmuc\KhachhangController;
 use App\Http\Controllers\Danhmuc\BanggiaController;
 use App\Http\Controllers\Danhmuc\NhaCungCapController;
+use App\Http\Controllers\BackupController;
+
 
 use App\Http\Middleware\ChecTypeUser;
 /*
@@ -147,8 +149,12 @@ Route::get('/bao-cao-tonkho-mh',[DasboardController::class,'get_baocao_mathang_t
 
 Route::post('/create/bc-thuchi',[ThuchiController::class,'print_bc_thuchi'])->middleware(['auth:sanctum','checkType']);
 
-// bao ca-  ds nhan vien(bang luong)
+// bao cao-  ds nhan vien(bang luong)
 Route::any('/bao-cao-ds-nhanvien',[NhanvienController::class,'print_baocao_nhanvien'])->middleware(['auth:sanctum','checkType']);
 
+// BACK_UPS
+
+Route::any('/backups-file',[BackupController::class,'backup_view'])->middleware(['auth:sanctum','checkType']);
+Route::any('/download/backups-file-{filename}',[BackupController::class,'backup_file'])->middleware(['auth:sanctum','checkType']);
 });
 

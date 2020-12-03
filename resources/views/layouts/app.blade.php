@@ -183,6 +183,12 @@
                                 
                             </div>
                             @endif
+                            {{-- Backup-file --}}
+                            <a href="/backups-file" class="nav-link collapsed">
+                                <div class="sb-nav-link-icon"><i class="fas fa-back-up"></i></div>
+                                Backup dữ liệu
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
                             
                         </div>
                     </div>

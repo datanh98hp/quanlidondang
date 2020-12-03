@@ -95,7 +95,7 @@ return [
             /*
              * The filename prefix used for the backup zip file.
              */
-            'filename_prefix' => '',
+            'filename_prefix' => 'backup_file',
 
             /*
              * The disk names on which the backups will be stored.
@@ -166,7 +166,7 @@ return [
      */
     'monitor_backups' => [
         [
-            'name' => config('app.name').'_Backup',
+            'name' => config('app.name').'_Backup_'.now(),
             'disks' => ['local'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
